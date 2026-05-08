@@ -19,9 +19,16 @@ from google import genai
 from google.genai import types as genai_types
 
 
-# Model prices per 1M tokens: (price_in, price_out, cache_read, cache_write)
-PRICES: dict[str, tuple[float, float, float, float]] = {
-    # "model-name": (input, output, cache_read, cache_write),
+# Model prices per 1M tokens: (price_in, price_out)
+PRICES: dict[str, tuple[float, float]] = {
+    "o1":                        (15.00, 60.00),
+    "claude-sonnet-4-6":         ( 3.00, 15.00),
+    "claude-haiku-4-5":          ( 1.00,  1.25),
+    "gemini-2.5-pro":            ( 2.50, 10.00),
+    "gpt-4.1":                   ( 2.00,  8.00),
+    "o3-mini":                   ( 1.10,  4.40),
+    "gpt-5":                     ( 1.25, 10.00),
+    "grok-4.3":                  ( 1.25,  2.50),
 }
 
 
@@ -31,21 +38,17 @@ class JudgeResponse:
 
     raw_text: str
     model_id: str
-    tokens_in: int           # non-cached input tokens
+    tokens_in: int
     tokens_out: int
     latency_s: float
-    tokens_cache_read: int = 0
-    tokens_cache_write: int = 0
     parsed: Any = None       # populated when a Pydantic schema is passed to judge()
     cost_usd: float = field(init=False)
 
     def __post_init__(self):
-        price_in, price_out, cache_read, cache_write = PRICES.get(self.model_id, (0.0, 0.0, 0.0, 0.0))
+        price_in, price_out = PRICES.get(self.model_id, (0.0, 0.0))
         self.cost_usd = (
             self.tokens_in * price_in
             + self.tokens_out * price_out
-            + self.tokens_cache_read * cache_read
-            + self.tokens_cache_write * cache_write
         ) / 1_000_000
 
 
@@ -69,8 +72,6 @@ def _call_anthropic(model: str, system_prompt: str, user_prompt: str, schema: ty
         model_id=model,
         tokens_in=usage.input_tokens,
         tokens_out=usage.output_tokens,
-        tokens_cache_read=getattr(usage, "cache_read_input_tokens", 0) or 0,
-        tokens_cache_write=getattr(usage, "cache_creation_input_tokens", 0) or 0,
         latency_s=latency,
         parsed=schema.model_validate_json(raw) if schema is not None else None,
     )
@@ -90,27 +91,21 @@ def _call_openai(model: str, system_prompt: str, user_prompt: str, schema: type 
         )
         latency = time.perf_counter() - t0
         choice = response.choices[0].message
-        cached = (getattr(response.usage.prompt_tokens_details, "cached_tokens", 0) or 0
-                  if getattr(response.usage, "prompt_tokens_details", None) else 0)
         return JudgeResponse(
             raw_text=choice.content or "",
             model_id=model,
-            tokens_in=response.usage.prompt_tokens - cached,
+            tokens_in=response.usage.prompt_tokens,
             tokens_out=response.usage.completion_tokens,
-            tokens_cache_read=cached,
             latency_s=latency,
             parsed=choice.parsed,
         )
     response = client.chat.completions.create(model=model, messages=messages)
     latency = time.perf_counter() - t0
-    cached = (getattr(response.usage.prompt_tokens_details, "cached_tokens", 0) or 0
-              if getattr(response.usage, "prompt_tokens_details", None) else 0)
     return JudgeResponse(
         raw_text=response.choices[0].message.content,
         model_id=model,
-        tokens_in=response.usage.prompt_tokens - cached,
+        tokens_in=response.usage.prompt_tokens,
         tokens_out=response.usage.completion_tokens,
-        tokens_cache_read=cached,
         latency_s=latency,
     )
 
@@ -132,13 +127,11 @@ def _call_gemini(model: str, system_prompt: str, user_prompt: str, schema: type 
     latency = time.perf_counter() - t0
     raw = response.text
     usage = response.usage_metadata
-    cached = getattr(usage, "cached_content_token_count", 0) or 0
     return JudgeResponse(
         raw_text=raw,
         model_id=model,
-        tokens_in=(usage.prompt_token_count or 0) - cached,
+        tokens_in=usage.prompt_token_count or 0,
         tokens_out=usage.candidates_token_count or 0,
-        tokens_cache_read=cached,
         latency_s=latency,
         parsed=schema.model_validate_json(raw) if schema is not None else None,
     )
@@ -213,7 +206,7 @@ def judge(model: str, system_prompt: str, user_prompt: str, schema: type | None 
     """
     if model.startswith("claude"):
         return _call_anthropic(model, system_prompt, user_prompt, schema)
-    elif model.startswith("gpt") or model.startswith("o1"):
+    elif model.startswith("gpt") or model.startswith("o1") or model.startswith("o3"):
         return _call_openai(model, system_prompt, user_prompt, schema)
     elif model.startswith("gemini"):
         return _call_gemini(model, system_prompt, user_prompt, schema)
