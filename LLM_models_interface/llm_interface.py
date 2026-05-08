@@ -144,6 +144,42 @@ def _call_gemini(model: str, system_prompt: str, user_prompt: str, schema: type 
     )
 
 
+def _call_grok(model: str, system_prompt: str, user_prompt: str, schema: type | None = None) -> JudgeResponse:
+    """Call the xAI Grok API (OpenAI-compatible). Uses structured output when a schema is given."""
+    client = openai.OpenAI(
+        api_key=os.environ["XAI_API_KEY"],
+        base_url="https://api.x.ai/v1",
+    )
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_prompt},
+    ]
+    t0 = time.perf_counter()
+    if schema is not None:
+        response = client.beta.chat.completions.parse(
+            model=model, messages=messages, response_format=schema,
+        )
+        latency = time.perf_counter() - t0
+        choice = response.choices[0].message
+        return JudgeResponse(
+            raw_text=choice.content or "",
+            model_id=model,
+            tokens_in=response.usage.prompt_tokens,
+            tokens_out=response.usage.completion_tokens,
+            latency_s=latency,
+            parsed=choice.parsed,
+        )
+    response = client.chat.completions.create(model=model, messages=messages)
+    latency = time.perf_counter() - t0
+    return JudgeResponse(
+        raw_text=response.choices[0].message.content,
+        model_id=model,
+        tokens_in=response.usage.prompt_tokens,
+        tokens_out=response.usage.completion_tokens,
+        latency_s=latency,
+    )
+
+
 def _call_ollama(model: str, system_prompt: str, user_prompt: str, schema: type | None = None) -> JudgeResponse:
     """Call a local Ollama model. Passes the JSON schema as a format constraint when given."""
     host = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
@@ -181,5 +217,7 @@ def judge(model: str, system_prompt: str, user_prompt: str, schema: type | None 
         return _call_openai(model, system_prompt, user_prompt, schema)
     elif model.startswith("gemini"):
         return _call_gemini(model, system_prompt, user_prompt, schema)
+    elif model.startswith("grok"):
+        return _call_grok(model, system_prompt, user_prompt, schema)
     else:
         return _call_ollama(model, system_prompt, user_prompt, schema)
