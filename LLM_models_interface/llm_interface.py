@@ -59,11 +59,13 @@ def _call_anthropic(model: str, system_prompt: str, user_prompt: str, schema: ty
     if schema is not None:
         sys += f"\n\nRespond with valid JSON matching this schema:\n{json.dumps(schema.model_json_schema(), indent=2)}"
     t0 = time.perf_counter()
-    response = client.messages.create(
+    with client.messages.stream(
         model=model,
         system=sys,
+        max_tokens=500000,
         messages=[{"role": "user", "content": user_prompt}],
-    )
+    ) as stream:
+        response = stream.get_final_message()
     latency = time.perf_counter() - t0
     raw = response.content[0].text
     usage = response.usage
