@@ -15,6 +15,7 @@ OUTPUT_PATH = Path(__file__).parent / "ag2_output_mad.json"
 URL_PATTERN = re.compile(r"https?://\S+")
 CODE_BLOCK_PATTERN = re.compile(r"```python", re.IGNORECASE)
 BOXED_PATTERN = re.compile(r"\\boxed\{([^}]+)\}")
+PROBLEM_PATTERN = re.compile(r"Problem:\n(.+)", re.DOTALL)
 
 YAML_MSG_PATTERN = re.compile(
     r"      content:(.*?)\n      role:\s*(\S+)\s*\n      name:\s*(\S+)",
@@ -168,6 +169,18 @@ def _build_trace(record: dict, messages: list[tuple[str, str, str]], header: dic
         trace_meta["final_answer"] = header.get("other_data.given")
         trace_meta["perturbation_type"] = header.get("other_data.perturbation_type")
         trace_meta["seed_answer"] = header.get("other_data.seed_answer")
+    else:
+        if steps:
+            m = PROBLEM_PATTERN.search(steps[0].content)
+            if m:
+                trace_meta["task"] = m.group(1).strip()
+            elif steps[0].kind == "message":
+                trace_meta["task"] = steps[0].content.strip()
+        for step in reversed(steps):
+            fa = _extract_final_answer(step.content)
+            if fa:
+                trace_meta["final_answer"] = fa
+                break
 
     return Trace(steps=steps, metadata=trace_meta)
 
