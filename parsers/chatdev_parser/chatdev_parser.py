@@ -90,6 +90,21 @@ def parse_log_text(text: str, trace_id: str = "") -> Trace:
             m = _TASK_PROMPT.search(content)
             if m:
                 task = m.group(1).strip()
+                steps.append(Step(
+                    agent="Human",
+                    content=task,
+                    kind="message",
+                    metadata={
+                        "step_index": len(steps),
+                        "timestamp": timestamp,
+                        "phase_name": "",
+                        "turn_number": None,
+                        "agent_pair": "",
+                        "has_code": False,
+                        "is_final_answer": False,
+                        "urls": [],
+                    },
+                ))
 
         cost_m = _COST.search(content)
         if cost_m:

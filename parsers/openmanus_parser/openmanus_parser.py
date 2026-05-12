@@ -186,16 +186,27 @@ def _parse_trajectory(trajectory_str: str, record: dict) -> Trace | None:
 
     steps: list[Step] = []
 
+    if task_prompt:
+        steps.append(Step(
+            agent="Human",
+            content=task_prompt,
+            kind="message",
+            metadata={"step_index": 0},
+        ))
+
     if plan_text:
         steps.append(Step(
             agent="system",
             content=plan_text,
             kind="system",
-            metadata={"task_prompt": task_prompt},
+            metadata={},
         ))
 
     for i, turn in enumerate(turns):
         steps.extend(_parse_turn(turn, i))
+
+    for i, step in enumerate(steps):
+        step.metadata["step_index"] = i
 
     if not steps:
         return None
