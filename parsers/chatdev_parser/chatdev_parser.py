@@ -26,9 +26,8 @@ _SYSTEM_MARKERS = frozenset([
     "[Seminar Conclusion]", "[Update Codes]", "[Software Info]",
 ])
 _TOOL_RESULT_MARKERS = frozenset([
-    "[OpenAI_Usage_Info Receive]", "[Execute Detail]",
+    "[Test Reports]",
 ])
-_CODE_BLOCK = re.compile(r"```\w")
 _FINAL_ANSWER = re.compile(r"^<INFO>\s+\w", re.MULTILINE)
 _URL = re.compile(r"https?://\S+")
 _COST = re.compile(r"cost:\s*\$([0-9.]+)")
@@ -37,17 +36,15 @@ _PREAMBLE = re.compile(r"^\[ChatDev is a software company.*?\]\n\n", re.DOTALL)
 _DROP_MARKERS = frozenset([
     "[OpenAI_Usage_Info Receive]",
     "[Execute Detail]",
+    "[Seminar Conclusion]",
 ])
 
 
 def _classify_kind(speaker: str, header_rest: str, content: str) -> str:
-    combined = header_rest + " " + content[:200]
-    if speaker == "System" or any(m in header_rest for m in _SYSTEM_MARKERS):
-        return "system"
     if any(m in header_rest for m in _TOOL_RESULT_MARKERS):
         return "tool_result"
-    if _CODE_BLOCK.search(content):
-        return "tool_call"
+    if speaker == "System" or any(m in header_rest for m in _SYSTEM_MARKERS):
+        return "system"
     return "message"
 
 
@@ -82,8 +79,6 @@ def parse_log_text(text: str, trace_id: str = "") -> Trace:
         header_text = header_text.strip()
 
         if any(m in header_text for m in _DROP_MARKERS):
-            continue
-        if "[Seminar Conclusion]" in header_text:
             continue
         if body.startswith("execute SimplePhase:") or body.startswith("execute ComposedPhase:"):
             continue
@@ -121,14 +116,14 @@ def parse_log_text(text: str, trace_id: str = "") -> Trace:
                 "phase_name": phase_name,
                 "turn_number": turn_number,
                 "agent_pair": agent_pair,
-                "has_code": kind != "system" and bool(_CODE_BLOCK.search(content)),
+                "has_code": kind == "message" and "```" in content,
                 "is_final_answer": bool(_FINAL_ANSWER.search(content)),
                 "urls": list(dict.fromkeys(urls)),
             },
         )
         steps.append(step)
 
-    conversation_steps = [s for s in steps if s.kind in ("message", "tool_call")]
+    conversation_steps = [s for s in steps if s.kind == "message"]
     agent_participation: Counter = Counter(s.agent for s in conversation_steps)
     n_agent_switches = sum(
         1 for a, b in zip(conversation_steps, conversation_steps[1:])
