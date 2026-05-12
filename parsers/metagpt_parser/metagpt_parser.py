@@ -30,8 +30,6 @@ _CODE_BLOCK = re.compile(r"```")
 _PYTHON_CODE = re.compile(r"^(?:import |from |def |class |@)", re.MULTILINE)
 _URL = re.compile(r"https?://\S+")
 
-_CODE_AGENTS = frozenset(["SimpleCoder", "SimpleTester"])
-
 
 def _strip_separator(body: str) -> str:
     return _SEPARATOR.sub("", body).rstrip()
@@ -40,8 +38,6 @@ def _strip_separator(body: str) -> str:
 def _classify_kind(agent: str, content: str) -> str:
     if agent == "Human":
         return "system"
-    if agent in _CODE_AGENTS or _CODE_BLOCK.search(content):
-        return "tool_call"
     return "message"
 
 
