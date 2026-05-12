@@ -30,6 +30,8 @@ def _extract_urls(text: str) -> list[str]:
 def _classify_kind(agent: str, content: str, prev_kind: str | None) -> str:
     if agent == "chat_manager":
         return "system"
+    if agent == "mathproxyagent":
+        return "tool_result" if prev_kind == "tool_call" else "message"
     has_code = bool(CODE_BLOCK_PATTERN.search(content))
     if has_code:
         return "tool_call"
@@ -46,10 +48,7 @@ def _extract_final_answer(content: str) -> str | None:
 
 
 def _make_step(agent: str, role: str, content: str, step_index: int, prev_kind: str | None) -> Step:
-    if step_index == 0 and agent == "mathproxyagent":
-        kind = "system"
-    else:
-        kind = _classify_kind(agent, content, prev_kind)
+    kind = _classify_kind(agent, content, prev_kind)
     final_answer = _extract_final_answer(content) if kind != "system" else None
     return Step(
         agent=agent,

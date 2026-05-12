@@ -36,8 +36,6 @@ def _strip_separator(body: str) -> str:
 
 
 def _classify_kind(agent: str, content: str) -> str:
-    if agent == "Human":
-        return "system"
     return "message"
 
 
@@ -62,7 +60,7 @@ def parse_trajectory(trajectory: str, trace_id: str = "") -> Trace:
             step = Step(
                 agent="Human",
                 content=content,
-                kind="system",
+                kind="message",
                 metadata={
                     "step_index": len(steps),
                     "timestamp": timestamp,
