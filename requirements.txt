@@ -1,0 +1,6 @@
+matplotlib
+numpy
+pandas
+seaborn
+tiktoken
+huggingface_hub
