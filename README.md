@@ -1,12 +1,11 @@
 # agent-evaluation-framework
 
-This is the repo for our bachelor thesis project (UvA × IKEA). We evaluate whether LLMs can automatically detect failure modes in multi-agent system (MAS) traces, using the [MAD dataset](https://huggingface.co/datasets/mcemri/MAST-Data) and the MAST taxonomy of 14 failure modes.
+This is the repo for our bachelor thesis project (UvA × IKEA). We are researching failure modes in multi-agent system (MAS) traces, using the [MAD dataset](https://huggingface.co/datasets/mcemri/MAST-Data) and the MAST taxonomy of 14 failure modes.
 
 ## Setup
 
 ```bash
 git clone <repo>
-cd agent-evaluation-framework
 python -m venv .venv && source .venv/bin/activate 
 pip install -r requirements.txt
 ```
@@ -15,8 +14,8 @@ pip install -r requirements.txt
 
 | Backend | What you need |
 |---|---|
-| `anthropic` | `gcloud auth application-default login` — Claude is served via Vertex AI |
-| `genai` | `gcloud auth application-default login` — Gemini via Vertex AI |
+| `anthropic` | `gcloud auth application-default login`  Claude is served via Vertex AI |
+| `genai` | `gcloud auth application-default login`  Gemini via Vertex AI |
 | `ollama` | Ollama running at `http://localhost:11434` |
 
 
@@ -48,12 +47,19 @@ python parsers/openmanus_parser/openmanus_parser.py
 
 Output is written as JSON next to each parser (e.g. `parsers/ag2_parser/ag2_output_mad.json`). These files are required by `data_understanding.ipynb`.
 
-## Running an experiment
+## Running the LLM-as-a-Judge
 
 1. Copy `experiments/stage1_llm_judge/experiments_template/` to a new folder, e.g. `experiment_2/`
-2. Edit `config.yaml` — set `model`, `backend`, `shots`, `slice_n`, etc.
+2. Edit `config.yaml`  define one or more experiments under the `experiments:` key. Each entry sets `model`, `backend`, `shots`, `slice_n`, etc.
 3. Open `llm_judge_pipeline.ipynb` and run top to bottom
 
-Results are saved to `saved_results/<model-name>.csv`. A checkpoint is written after every trace so you can resume a run if it's interrupted.
+The notebook runs all experiments in the config sequentially. Results are written to `saved_results/`:
+
+| File | What it contains |
+|---|---|
+| `predictions.csv` | Per-trace, per-failure-mode predictions for all experiments |
+| `metrics_per_mode.csv` | Precision, recall, F1 per failure mode per experiment |
+| `summary.csv` | Aggregated metrics per experiment |
+| `checkpoints/<name>.pkl` | Checkpoint after every trace, results are not lost if the run crashes |
 
 The template notebook contains a detailed explanation of each step, including input/output descriptions and config options.
