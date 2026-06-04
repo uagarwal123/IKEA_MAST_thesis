@@ -5,8 +5,15 @@ This is the repo for our bachelor thesis project (UvA × IKEA). We are researchi
 ## Setup
 
 ```bash
-git clone <repo>
-python -m venv .venv && source .venv/bin/activate 
+git clone https://github.com/uagarwal123/agent-evaluation-framework.git
+cd agent-evaluation-framework
+python -m venv .venv
+
+# Mac/Linux
+source .venv/bin/activate
+# Windows
+.venv\Scripts\activate
+
 pip install -r requirements.txt
 ```
 
