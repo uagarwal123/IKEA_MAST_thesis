@@ -22,6 +22,7 @@ from google.cloud import secretmanager
 from anthropic import AnthropicVertex
 import ollama
 from openai import OpenAI
+import os
 
 # Model prices per 1M tokens: (price_in, price_out)
 PRICES: dict[str, tuple[float, float]] = {
