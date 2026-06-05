@@ -1,3 +1,5 @@
+skip_opensource_models: false   # set to true to skip ollama experiments 
+
 experiments:
   - name: claude-sonnet-4-6_few_shot
     model: claude-sonnet-4-6
@@ -17,6 +19,21 @@ experiments:
   - name: gemini-2.5-flash_zero_shot
     model: gemini-2.5-flash
     backend: genai           # "genai" | "anthropic" | "ollama" | "uva"
+    temperature: 0.0
+    system_prompt:           # optional; leave empty for no system prompt
+    reasoning: false         # enables extended thinking (genai + anthropic only; not ollama)
+    shots: 0                 # 0 = zero-shot; 1 = few-shot (requires examples_path)
+    slice_n: 3            # null = full dataset; int = stratified slice by mas_name
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434      # ollama only
+
+  - name: ollama-2.5-flash_zero_shot
+    model: llama3.2:1b
+    backend: ollama           # "genai" | "anthropic" | "ollama" | "uva"
     temperature: 0.0
     system_prompt:           # optional; leave empty for no system prompt
     reasoning: false         # enables extended thinking (genai + anthropic only; not ollama)
