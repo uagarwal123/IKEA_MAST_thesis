@@ -24,22 +24,21 @@ pip install -r requirements.txt
 | `anthropic` | `gcloud auth application-default login`  Claude is served via Vertex AI |
 | `genai` | `gcloud auth application-default login`  Gemini via Vertex AI |
 | `ollama` | Ollama running at `http://localhost:11434` |
-| `uva` | `UVA_API_KEY` environment variable set |
+| `uva` | `UVA_API_KEY` in a `.env` at repo root |
 
-```powershell
-# Windows (PowerShell)
-$env:UVA_API_KEY = "sk-..."
+Create a `.env` file at the repo root with:
+
+```
+UVA_API_KEY=sk-...
 ```
 
-```bash
-# Mac/Linux
-export UVA_API_KEY="sk-..."
-```
+
+To skip ollama experiments, set `skip_opensource_models: true` in `config.yaml`.
 
 
 ## Data understanding
 
-Three notebooks cover dataset exploration. Read them in this order:
+Three notebooks cover dataset exploration:
 
 | Notebook | What it covers |
 |---|---|

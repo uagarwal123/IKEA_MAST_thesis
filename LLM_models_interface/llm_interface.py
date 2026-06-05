@@ -23,6 +23,10 @@ from anthropic import AnthropicVertex
 import ollama
 from openai import OpenAI
 import os
+from dotenv import load_dotenv
+
+# Load .env from repo root so notebooks pick up UVA_API_KEY without restarting.
+load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=False)
 
 # Model prices per 1M tokens: (price_in, price_out)
 PRICES: dict[str, tuple[float, float]] = {
@@ -340,7 +344,12 @@ def _call_uva(model: str, prompt: str, temperature: float, trace_id: str, base_u
     """Call a model via the UvA AI Chat LiteLLM proxy (OpenAI-compatible)."""
 
     api_key = os.environ["UVA_API_KEY"]
-    client = OpenAI(api_key=api_key, base_url=base_url.rstrip("/") + "/v1")
+    client = OpenAI(
+        api_key=api_key,
+        base_url=base_url.rstrip("/") + "/v1",
+        default_query={"api-version": "2024-12-01-preview"},
+        max_retries=6,
+    )
     messages = []
     if system_prompt:
         messages.append({"role": "system", "content": system_prompt})
@@ -473,6 +482,9 @@ def _stratified_sample(data: list[dict], n: int, key: str, seed: int = 42) -> li
 def load_dataset(config: JudgeConfig) -> list[dict]:
     with open(config.dataset_path) as f:
         data = json.load(f)
+    # Filter Round 3 before slicing so slice_n=1 stays inside Round 3.
+    if data and "round" in data[0]:
+        data = [t for t in data if t.get("round") == "Round 3"]
     if config.slice_n is not None and config.slice_n < len(data):
         data = _stratified_sample(data, config.slice_n, key="mas_name", seed=42)
     return data
