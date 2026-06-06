@@ -70,6 +70,8 @@ Output is written as JSON next to each parser (e.g. `parsers/ag2_parser/ag2_outp
 2. Edit `config.yaml`  define one or more experiments under the `experiments:` key. Each entry sets `model`, `backend`, `shots`, `slice_n`, etc.
 3. Open `llm_judge_pipeline.ipynb` and run top to bottom
 
+If you don't have Ollama set up, set `skip_opensource_models: true` at the top of the config to skip all Ollama experiments.
+
 The notebook runs all experiments in the config sequentially. Results are written to `saved_results/`:
 
 | File | What it contains |
