@@ -110,3 +110,4 @@ pandas
 seaborn
 tiktoken
 huggingface_hub
+ag2[openai]==0.12.0
