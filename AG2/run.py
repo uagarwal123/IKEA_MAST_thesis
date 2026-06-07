@@ -81,7 +81,10 @@ with open(run_dir / "raw.json", "w", encoding="utf-8") as f:
 
 model_name = llm_config["config_list"][0]["model"]
 usage = result.cost.get("usage_including_cached_inference", {})
-model_usage = usage.get(model_name, {})
+model_usage = next(
+    (v for k, v in usage.items() if k != "total_cost" and isinstance(v, dict)),
+    {},
+)
 
 n_code_executions = sum(
     1 for m in result.chat_history
@@ -100,6 +103,7 @@ record = {
     "mast_annotation": None,
 }
 trace = _build_trace(record, messages, header=None)
+trace.metadata["task"] = task
 trace.metadata.update({
     "task_id": task_id,
     "task_text": task,
