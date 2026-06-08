@@ -1,0 +1,8 @@
+[
+  {
+    "question": "Mark was unwell for 2 months, during which he lost 15 pounds per month. If his final weight was 60 pounds, what was his initial weight?",
+    "solution": "Since Mark was losing 15 pounds each month, in 2 months he lost 15 * 2 = <<15*2=30>>30 pounds.\nAdding the weight lost to the final weight gives an initial weight of 60 + 30 = <<60+30=90>>90 pounds.\nMark's initial weight was 90 pounds.\n#### 90",
+    "answer": "90",
+    "perturbation_type": "numerical substitution"
+  }
+]

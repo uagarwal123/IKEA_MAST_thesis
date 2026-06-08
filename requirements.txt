@@ -111,3 +111,4 @@ seaborn
 tiktoken
 huggingface_hub
 ag2[openai]==0.13.3
+openai==2.41.0
