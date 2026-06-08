@@ -5,6 +5,7 @@ import time
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
+import re
 import autogen
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -62,10 +63,19 @@ assistant = autogen.AssistantAgent(
     llm_config=llm_config,
 )
 
+def _is_termination_msg_mathchat(msg):
+    content = msg.get("content", "") or ""
+    if "TERMINATE" in content:
+        return True
+    has_code = bool(re.search(r"```python", content))
+    return not has_code and bool(re.search(r"\\boxed\{[^}]+\}", content))
+
 user_proxy = autogen.UserProxyAgent(
     name="mathproxyagent",
+    is_termination_msg=_is_termination_msg_mathchat,
     human_input_mode="NEVER",
     max_consecutive_auto_reply=max_auto_reply,
+    default_auto_reply="Continue. Please keep solving the problem until you need to query. (If you get to the answer, put it in \\boxed{}.)",
     code_execution_config={"work_dir": str(code_dir), "use_docker": False},
 )
 
@@ -91,7 +101,7 @@ n_code_executions = sum(
     if m.get("name") == "mathproxyagent" and "exitcode:" in (m.get("content") or "")
 )
 last_content = (result.chat_history[-1].get("content") or "") if result.chat_history else ""
-terminated_normally = "TERMINATE" in last_content
+terminated_normally = "\\boxed{" in last_content or "TERMINATE" in last_content
 
 messages = [(m.get("content") or "", m.get("role", ""), m.get("name", "")) for m in result.chat_history]
 record = {
