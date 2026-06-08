@@ -116,3 +116,4 @@ openai==2.41.0
 python-dotenv==1.2.2
 sentence-transformers
 ag2[openai]==0.13.3
+openai==2.41.0
