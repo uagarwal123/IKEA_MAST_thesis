@@ -13,7 +13,9 @@ DATA_PATH = Path(__file__).parent.parent.parent / "data" / "MAST-Data" / "MAD_fu
 OUTPUT_PATH = Path(__file__).parent / "ag2_output_mad.json"
 
 CODE_BLOCK_PATTERN = re.compile(r"```python", re.IGNORECASE)
-BOXED_PATTERN = re.compile(r"\\boxed\{([^}]+)\}")
+# Strip fenced code blocks before searching for \boxed{} so that unexecuted
+# f-string templates (e.g. f"\\boxed{{{result}}}") are not mistaken for answers.
+_CODE_FENCE_RE = re.compile(r"```[\s\S]*?```|'''[\s\S]*?'''", re.DOTALL)
 PROBLEM_PATTERN = re.compile(r"Problem:\n(.+)", re.DOTALL)
 
 YAML_MSG_PATTERN = re.compile(
@@ -36,10 +38,26 @@ def _classify_kind(agent: str, content: str, prev_kind: str | None) -> str:
 
 
 def _extract_final_answer(content: str) -> str | None:
-    m = BOXED_PATTERN.search(content)
-    if m and m.group(1).strip():
-        return m.group(1).strip()
-    return None
+    cleaned = _CODE_FENCE_RE.sub("", content)
+    idx = 0
+    while True:
+        start = cleaned.find(r'\boxed{', idx)
+        if start == -1:
+            return None
+        open_pos = start + len(r'\boxed{')
+        depth = 1
+        pos = open_pos
+        while pos < len(cleaned) and depth > 0:
+            if cleaned[pos] == '{':
+                depth += 1
+            elif cleaned[pos] == '}':
+                depth -= 1
+            pos += 1
+        if depth == 0:
+            inner = cleaned[open_pos:pos - 1].strip()
+            if inner:
+                return inner
+        idx = start + 1
 
 
 def _make_step(agent: str, role: str, content: str, step_index: int, prev_kind: str | None) -> Step:

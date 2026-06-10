@@ -1,0 +1,6 @@
+trace_id,question_id,model,correct,predicted_answer,gold_answer,tokens_in,tokens_out,latency_s,has_code,cost_usd
+baseline_olympiad_gpt41_n5_20260609_0,2827,gpt-4.1,True,47,47,1890,292,4.292,True,0.006116
+baseline_olympiad_gpt41_n5_20260609_1,2165,gpt-4.1,False,"\text{There are no such triples } (x, y, z) \text{ of positive integers with } x \leq y \leq z.","(2,251,252)",2315,764,8.405,True,0.010742
+baseline_olympiad_gpt41_n5_20260609_2,1820,gpt-4.1,False,"\text{All lattice points } (x, y) \text{ with } x \geq n \text{ and } y \geq n",n^{2}+1,2723,948,12.085,True,0.013030000000000002
+baseline_olympiad_gpt41_n5_20260609_3,2328,gpt-4.1,True,-\frac{30}{17},-\frac{30}{17},2251,344,4.015,True,0.007254
+baseline_olympiad_gpt41_n5_20260609_4,2731,gpt-4.1,True,\frac{27}{2},\frac{27}{2},1868,396,7.371,True,0.006904

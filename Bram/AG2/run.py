@@ -1,148 +1,247 @@
+import csv
 import os
 import sys
 import json
 import time
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
 import re
+import yaml
 import autogen
+from openai import APIConnectionError, APIStatusError
+
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from parsers.ag2_parser.ag2_parser import _build_trace, _trace_to_dict
-from utils.eval import answers_match
+from utils.eval import answers_match, is_unanswerable_response
+from data.gsm_plus import create_sample as create_gsm_plus_sample
+from data.olympiad import create_sample as create_olympiad_sample
 
 load_dotenv()
 
-llm_config = {
-    "config_list": [
-        {
-            "model": "gpt-4.1",
-            "api_key": os.environ["UVA_API_KEY"],
-            "base_url": "https://llmproxy.uva.nl",
-        }
-    ],
-    "temperature": 0,
-}
+CSV_COLUMNS = [
+    "trace_id", "question_id", "model", "correct",
+    "predicted_answer", "gold_answer",
+    "tokens_in", "tokens_out", "latency_s", "has_code", "cost_usd",
+]
 
-mathchat_first_message = """Let's use Python to solve a math problem.
-Query requirements:
-You should always use the 'print' function for the output and use fractions/radical
-forms instead of decimals.
-You can use packages like sympy to help you.
-You must follow the formats below to write your code:
-'''python
-# your code
-'''
-First state the key idea to solve the problem. You may choose from three ways to
-solve the problem:
-Case 1: If the problem can be solved with Python code directly, please write a
-program to solve it. You can enumerate all possible arrangements if needed.
-Case 2: If the problem is mostly reasoning, you can solve it by yourself directly.
-Case 3: If the problem cannot be handled in the above two ways, please follow this
-process:
-1. Solve the problem step by step (do not over-divide the steps).
-2. Take out any queries that can be asked through Python (for example, any
-calculations or equations that can be calculated).
-3. Wait for me to give the results.
-4. Continue if you think the result is correct. If the result is invalid or
-unexpected, please correct your query or reasoning.
-After all the queries are run and you get the answer, put the answer in \\boxed{}. 
-Always put your final answer in \\boxed{} before writing TERMINATE, regardless of which case you use.
-Problem: """
-
-trace_id = datetime.now().strftime("%Y%m%d_%H%M%S")
-run_dir = Path(__file__).parent / "traces" / f"run_{trace_id}"
-code_dir = run_dir / "code"
-code_dir.mkdir(parents=True, exist_ok=True)
-
-DATA = Path(__file__).parent / "data" / "gsm_plus_sample.json"
-with open(DATA, encoding="utf-8") as f:
-    examples = json.load(f)
-example = examples[0]
-task_id = example.get("id", 0)
-task = example["question"]
-expected_answer = example["answer"]
-perturbation_type = example["perturbation_type"]
-max_auto_reply = 10
-
-assistant = autogen.AssistantAgent(
-    name="assistant",
-    llm_config=llm_config,
-)
 
 def _is_termination_msg_mathchat(msg):
     content = msg.get("content", "") or ""
+    has_code = bool(re.search(r"```python|'''python", content))
+    if has_code:
+        return False  # always execute code before terminating
     if "TERMINATE" in content:
         return True
-    has_code = bool(re.search(r"```python", content))
-    return not has_code and bool(re.search(r"\\boxed\{[^}]+\}", content))
+    return bool(re.search(r"\\boxed\{[^}]+\}", content))
 
-user_proxy = autogen.UserProxyAgent(
-    name="mathproxyagent",
-    is_termination_msg=_is_termination_msg_mathchat,
-    human_input_mode="NEVER",
-    max_consecutive_auto_reply=max_auto_reply,
-    default_auto_reply="Continue. Please keep solving the problem until you need to query. (If you get to the answer, put it in \\boxed{}.)",
-    code_execution_config={"work_dir": str(code_dir), "use_docker": False},
-)
 
-t_start = time.time()
-result = user_proxy.initiate_chat(
-    assistant,
-    message=mathchat_first_message + task,
-)
-latency = round(time.time() - t_start, 3)
+def _append_json_list(path: Path, item):
+    data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
+    data.append(item)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
-with open(run_dir / "raw.json", "w", encoding="utf-8") as f:
-    json.dump(result.chat_history, f, ensure_ascii=False, indent=2)
 
-model_name = llm_config["config_list"][0]["model"]
-usage = result.cost.get("usage_including_cached_inference", {})
-model_usage = next(
-    (v for k, v in usage.items() if k != "total_cost" and isinstance(v, dict)),
-    {},
-)
+def _append_csv_row(path: Path, row: dict):
+    with open(path, "a", newline="", encoding="utf-8") as f:
+        csv.DictWriter(f, fieldnames=CSV_COLUMNS).writerow(row)
 
-n_code_executions = sum(
-    1 for m in result.chat_history
-    if m.get("name") == "mathproxyagent" and "exitcode:" in (m.get("content") or "")
-)
-last_content = (result.chat_history[-1].get("content") or "") if result.chat_history else ""
-terminated_normally = "\\boxed{" in last_content or "TERMINATE" in last_content
 
-messages = [(m.get("content") or "", m.get("role", ""), m.get("name", "")) for m in result.chat_history]
-record = {
-    "trace_id": trace_id,
-    "trace": {"key": f"AG2_live_{trace_id}"},
-    "mas_name": "AG2",
-    "llm_name": model_name,
-    "benchmark_name": "GSM-Plus",
-    "mast_annotation": None,
-}
-trace = _build_trace(record, messages, header=None)
-correct = answers_match(trace.metadata.get("final_answer"), expected_answer)
-trace.metadata.update({
-    "task": task,
-    "task_id": task_id,
-    "timestamp": datetime.now().isoformat(),
-    "temperature": llm_config["temperature"],
-    "max_consecutive_auto_reply": max_auto_reply,
-    "latency_seconds": latency,
-    "total_tokens": model_usage.get("total_tokens"),
-    "input_tokens": model_usage.get("prompt_tokens"),
-    "output_tokens": model_usage.get("completion_tokens"),
-    "estimated_cost_usd": usage.get("total_cost"),
-    "n_code_executions": n_code_executions,
-    "terminated_normally": terminated_normally,
-    "expected_answer": expected_answer,
-    "perturbation_type": perturbation_type,
-    "correct": correct,
-    "success": correct,
-})
+def run(config_path: Path):
+    cfg = yaml.safe_load(open(config_path, encoding="utf-8"))
 
-with open(run_dir / "parsed.json", "w", encoding="utf-8") as f:
-    json.dump(_trace_to_dict(trace), f, ensure_ascii=False, indent=2)
+    stage = cfg["stage"]
+    max_auto_reply = cfg["max_auto_reply"]
+    mathchat_first_message = (config_path.parent / cfg["prompt"]).read_text(encoding="utf-8")
 
-print(f"Run saved to {run_dir}")
+    llm_config = {
+        "config_list": [
+            {
+                "model": cfg["model"]["name"],
+                "api_key": os.environ["UVA_API_KEY"],
+                "base_url": cfg["model"]["base_url"],
+            }
+        ],
+        "temperature": cfg["model"]["temperature"],
+    }
+
+    benchmark = cfg.get("benchmark", "gsm_plus")
+    if benchmark == "olympiad":
+        data_path = create_olympiad_sample(cfg["n"])
+    else:
+        data_path = create_gsm_plus_sample(cfg["n"])
+    with open(data_path, encoding="utf-8") as f:
+        examples = json.load(f)
+
+    model_name = llm_config["config_list"][0]["model"]
+    model_slug = re.sub(r"[^a-zA-Z0-9]", "", model_name)
+    date_str = datetime.now().strftime("%Y%m%d")
+    run_id = f"{stage}_{benchmark}_{model_slug}_n{len(examples)}_{date_str}"
+
+    run_dir = Path(__file__).parent / "results" / run_id
+    run_dir.mkdir(parents=True, exist_ok=True)
+    code_base_dir = run_dir / "code"
+
+    with open(run_dir / "run_config.yaml", "w", encoding="utf-8") as f:
+        yaml.dump(cfg, f, allow_unicode=True)
+
+    raw_path = run_dir / "raw_traces.json"
+    parsed_path = run_dir / "parsed_traces.json"
+    csv_path = run_dir / "summary.csv"
+
+    # Resume: collect already-completed question indices from existing CSV
+    completed_indices = set()
+    if csv_path.exists():
+        with open(csv_path, encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                tid = row.get("trace_id", "")
+                m = re.search(r"_(\d+)$", tid)
+                if m:
+                    completed_indices.add(int(m.group(1)))
+    else:
+        with open(csv_path, "w", newline="", encoding="utf-8") as f:
+            csv.DictWriter(f, fieldnames=CSV_COLUMNS).writeheader()
+
+    all_parsed = []
+
+    for i, example in enumerate(examples):
+        task_id = example.get("id", i)
+        task = example["question"]
+        expected_answer = example["answer"]
+        perturbation_type = example.get("perturbation_type") or example.get("category", "unknown")
+
+        code_dir = code_base_dir / f"q_{i}"
+
+        assistant = autogen.AssistantAgent(
+            name="assistant",
+            llm_config=llm_config,
+        )
+        user_proxy = autogen.UserProxyAgent(
+            name="mathproxyagent",
+            is_termination_msg=_is_termination_msg_mathchat,
+            human_input_mode="NEVER",
+            max_consecutive_auto_reply=max_auto_reply,
+            default_auto_reply="Continue. Please keep solving the problem until you need to query. (If you get to the answer, put it in \\boxed{}.)",
+            code_execution_config={"work_dir": str(code_dir), "use_docker": False, "timeout": 30},
+        )
+
+        if i in completed_indices:
+            print(f"[{i+1}/{len(examples)}] task_id={task_id} -- skipped (already done)")
+            continue
+
+        print(f"[{i+1}/{len(examples)}] task_id={task_id}")
+        QUESTION_TIMEOUT = 120  # seconds per question
+
+        t_start = time.time()
+        result = None
+        for attempt in range(3):
+            try:
+                with ThreadPoolExecutor(max_workers=1) as _exec:
+                    future = _exec.submit(
+                        user_proxy.initiate_chat,
+                        assistant,
+                        message=mathchat_first_message + task,
+                    )
+                    result = future.result(timeout=QUESTION_TIMEOUT)
+                break
+            except FuturesTimeoutError:
+                print(f"  Question {i} timed out after {QUESTION_TIMEOUT}s, skipping.")
+                break
+            except (APIConnectionError, APIStatusError) as e:
+                print(f"  API error (attempt {attempt+1}/3): {e}")
+                if attempt < 2:
+                    time.sleep(10)
+                else:
+                    print("  Skipping question after 3 failed attempts.")
+        if result is None:
+            continue
+        latency = round(time.time() - t_start, 3)
+
+        _append_json_list(raw_path, result.chat_history)
+
+        usage = result.cost.get("usage_including_cached_inference", {})
+        model_usage = next(
+            (v for k, v in usage.items() if k != "total_cost" and isinstance(v, dict)),
+            {},
+        )
+
+        n_code_executions = sum(
+            1 for m in result.chat_history
+            if m.get("name") == "mathproxyagent" and "exitcode:" in (m.get("content") or "")
+        )
+        last_content = (result.chat_history[-1].get("content") or "") if result.chat_history else ""
+        terminated_normally = "\\boxed{" in last_content or "TERMINATE" in last_content
+
+        trace_id = f"{run_id}_{i}"
+        messages = [(m.get("content") or "", m.get("role", ""), m.get("name", "")) for m in result.chat_history]
+        record = {
+            "trace_id": trace_id,
+            "trace": {"key": f"AG2_live_{trace_id}"},
+            "mas_name": "AG2",
+            "llm_name": model_name,
+            "benchmark_name": {"gsm_plus": "GSM-Plus", "olympiad": "OlympiadBench"}.get(benchmark, benchmark),
+            "mast_annotation": None,
+        }
+        trace = _build_trace(record, messages, header=None)
+        if expected_answer is None or expected_answer == "None":
+            correct = is_unanswerable_response(last_content)
+        else:
+            correct = answers_match(
+                trace.metadata.get("final_answer"),
+                expected_answer,
+                symbolic=(benchmark == "olympiad"),
+            )
+        trace.metadata.update({
+            "task": task,
+            "task_id": task_id,
+            "timestamp": datetime.now().isoformat(),
+            "temperature": llm_config["temperature"],
+            "max_consecutive_auto_reply": max_auto_reply,
+            "latency_seconds": latency,
+            "total_tokens": model_usage.get("total_tokens"),
+            "input_tokens": model_usage.get("prompt_tokens"),
+            "output_tokens": model_usage.get("completion_tokens"),
+            "estimated_cost_usd": usage.get("total_cost"),
+            "n_code_executions": n_code_executions,
+            "terminated_normally": terminated_normally,
+            "expected_answer": expected_answer,
+            "perturbation_type": perturbation_type,
+            "correct": correct,
+            "success": correct,
+        })
+
+        parsed_dict = _trace_to_dict(trace)
+        _append_json_list(parsed_path, parsed_dict)
+        all_parsed.append(parsed_dict)
+
+        _append_csv_row(csv_path, {
+            "trace_id": trace_id,
+            "question_id": task_id,
+            "model": model_name,
+            "correct": correct,
+            "predicted_answer": trace.metadata.get("final_answer"),
+            "gold_answer": expected_answer,
+            "tokens_in": model_usage.get("prompt_tokens"),
+            "tokens_out": model_usage.get("completion_tokens"),
+            "latency_s": latency,
+            "has_code": n_code_executions > 0,
+            "cost_usd": usage.get("total_cost"),
+        })
+
+        print(f"  -> correct={correct}, latency={latency}s")
+        if code_dir.exists() and not any(code_dir.iterdir()):
+            code_dir.rmdir()
+
+    if code_base_dir.exists() and not any(code_base_dir.iterdir()):
+        code_base_dir.rmdir()
+
+    n_correct = sum(1 for t in all_parsed if t.get("metadata", {}).get("correct"))
+    print(f"\nRun saved to {run_dir}")
+    print(f"Score: {n_correct}/{len(examples)}")
+
+
+if __name__ == "__main__":
+    run(Path(__file__).parent / "config.yaml")

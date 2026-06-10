@@ -1,0 +1,302 @@
+[
+  {
+    "question": "Elvis starts driving from his house and travels west for 10 hours. Then he turns around and travels east for 12 hours. If he was driving at an average speed of 18mph for both parts of the journey, how far is he from his house now?",
+    "solution": "During the first part of the journey he travels west for 10 hours at a speed of 18mph so he covered a distance of 10*18 = <<10*18=180>>180 miles\nThen he travels east at the same speed for 12 hours so he covered a distance of 12*18 = <<12*18=216>>216 miles\nHis distance from his house now is the difference between his east and west movements which is 216-180 = <<216-180=36>>36 miles\n#### 36",
+    "answer": "36",
+    "perturbation_type": "digit expansion"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $5. She also saw a beautiful necklace for $50 but decided not to buy it. Lani bought a pair of sunglasses at $30 and two bathrobes at $100 each. She also considered buying a hat for $20 but eventually decided against it. How much did they spend in all?",
+    "solution": "Ellen spent $100 + $5 = $<<100+5=105>>105.\nTwo bathrobes cost 2 x $100 = $<<2*100=200>>200.\nSo, Lani spent $30 +$200 =$<<30+200=230>>230.\nTherefore, they spent $105 + $230 = $<<105+230=335>>335 in all.\n#### 335",
+    "answer": "335",
+    "perturbation_type": "distraction insertion"
+  },
+  {
+    "question": "Zoe and Sydney are having a watermelon seed spitting contest. Whoever spits the seeds the furthest wins. They each got a watermelon. Zoe had 40 seeds, and she threw up 10 feet of each one. Sydney threw up 12 feet of each one. If the average total distance between two people spitting seeds is 410 feet, how many seeds are there in Sydney?",
+    "solution": "First, calculate the total distance spat by Zoey by multiplying the number of seeds by the distance each one is spat: 40 seeds * 10 feet/seed = 400 feet\nThen, find the total distance spat: 410 feet *2 = 820 feet\nSo Sydney spits her seeds a total of 820 feet- 400 feet = 420 feet.\nSince Sydney spits each one 12 feet, so she has 420/12 = 35 seeds in total.\n#### 35",
+    "answer": "35",
+    "perturbation_type": "reversing operation"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $5. Lani bought a pair of sunglasses at $30 and two bathrobes. How much did they spend in all?",
+    "solution": "We don't know how much money each bathrobes cost. \n#### None",
+    "answer": "None",
+    "perturbation_type": "critical thinking"
+  },
+  {
+    "question": "John fills a 6.5 foot by 4.4 foot pool that is 5 feet deep.  It cost $.1 per cubic foot to fill.  How much does it cost to fill?",
+    "solution": "The pool has a base of 6.5*4.4=<<6.5*4.4=28.6>>28.6 square feet\nSo its volume was 28.6*5=<<28.6*5=143>>143 cubic feet\nSo it cost 143*.1=$<<143*.1=14.3>>14.3 to fill the pool\n#### 14.3",
+    "answer": "14.3",
+    "perturbation_type": "integer-decimal-fraction conversion"
+  },
+  {
+    "question": "Zoey and Sydney are having a watermelon seed spitting contest. Whoever spits their seeds the most total distance wins. They each get one watermelon. Zoey's has 40 seeds and she spits each one 10 feet. Sydney's has 35 seeds. What is the average total distance spat?",
+    "solution": "We don't know the distance\n#### None",
+    "answer": "None",
+    "perturbation_type": "critical thinking"
+  },
+  {
+    "question": "Mark was unwell for 3 months, during which he lost 10 pounds per month. If his initial weight was 100 pounds, what was his final weight?",
+    "solution": "Mark lost a total of 3 months * 10 pounds/month = 30 pounds.\n\nSo, his final weight was 100 pounds - 30 pounds =  70 pounds.\n#### 70",
+    "answer": "70",
+    "perturbation_type": "reversing operation"
+  },
+  {
+    "question": "Raymond had $21. He then received an allowance from which he saved $11. Later, he decided to buy a comic book and a puzzle. The comic book cost him $5 and the puzzle cost him $19. However, before buying the puzzle, he found a discount coupon that allowed him to get a 50% discount on the puzzle. After buying the comic book and the discounted puzzle, how much money does Raymond have left?",
+    "solution": "Raymond had $21 and saved $11, so he had $21 + $11 = $32.\n\nThe puzzle cost $19, but he had a 50% discount, so he paid $19 * 50/100 = $9.5 for the puzzle.\n\nSo, after buying the comic book and the puzzle, Raymond has $32 - $5 - $9.5 =  17.5 left.\n#### 17.5",
+    "answer": "17.5",
+    "perturbation_type": "adding operation"
+  },
+  {
+    "question": "Mark fell ill for a period of three months, and he lost 10 pounds each month during his illness. If he weighed 70 pounds at the end of this period, what was his weight before he got sick?",
+    "solution": "Since Mark was losing 10 pounds each month, in 3 months he lost 10 * 3 = <<10*3=30>>30 pounds.\nAdding the weight lost to the final weight gives an initial weight of 70 + 30 = <<70+30=100>>100 pounds.\nMark's initial weight was 100 pounds.\n#### 100",
+    "answer": "100",
+    "perturbation_type": "problem understanding"
+  },
+  {
+    "question": "Raymond had $21.5. Then he saved $11.5 from his allowance and spent $5.5 on a comic book and $19.5 on a puzzle. How much money does Raymond have left?",
+    "solution": "Raymond started with $21.5 + $11.5 = $<<21.5+11.5=33>>33.\nRaymond then spent $5.5 + $19.5 = $<<5.5+19.5=25>>25.\nRaymond now has $33 - $25 = $<<33-25=8>>8 left.\n#### 8",
+    "answer": "8",
+    "perturbation_type": "integer-decimal-fraction conversion"
+  },
+  {
+    "question": "Raymond initially had $2100. Then he saved $1100 from his allowance and spent $500 on a comic book and $1900 on a puzzle. How much money does Raymond have left?",
+    "solution": "Raymond initially had $2100 and saved $1100, so he had $2100 + $1100 =  3200.\nThen he spent $500 on a comic book and $1900 on a puzzle, so he spent $500 + $1900 =  2400.\nTherefore, Raymond has $3200 - $2400 = $ 800 left.\n#### 800",
+    "answer": "800",
+    "perturbation_type": "digit expansion"
+  },
+  {
+    "question": "Zoey and Sydney are having in a watermelon seed spitting contest. Whoever spits their seeds the furthest total distance will be the winner. They each get one watermelon. Zoey's has 50 seeds and she manages to spit each one 15 feet. Sydney's has 45 seeds and she spits each one 18 feet. What is the average total distance spat?",
+    "solution": "First, calculate the total distance spat by each person. Zoey spat 50 seeds * 15 feet/seed = 750 feet. Sydney spat 45 seeds * 18 feet/seed = 810 feet. \n\nThen, add these two distances together to find the total distance spat: 750 feet + 810 feet = 1560 feet. \n\nFinally, divide this total distance by the number of people to find the average distance spat: 1560 feet / 2 people =  780 feet.\n#### 780",
+    "answer": "780",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "Initially, Raymond possessed $21. He added $11 to his savings from his allowance, but then he used $5 to buy a comic book and $19 to purchase a puzzle. What is the remaining amount of money Raymond has?",
+    "solution": "Raymond started with $21 + $11 = $<<21+11=32>>32.\nRaymond then spent $5 + $19 = $<<5+19=24>>24.\nRaymond now has $32 - $24 = $<<32-24=8>>8 left.\n#### 8",
+    "answer": "8",
+    "perturbation_type": "problem understanding"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $12. Lani bought a pair of sunglasses at $120 and two bathrobes at $100 each. How much did they spend in all?",
+    "solution": "Ellen spent $100 + $12 = $<<100+12=112>>112.\nTwo bathrobes cost 2 x $100 = $<<2*100=200>>200.\nSo, Lani spent $120 +$200 =$<<120+200=320>>320.\nTherefore, they spent $112 + $320 = $<<112+320=432>>432 in all.\n#### 432",
+    "answer": "432",
+    "perturbation_type": "digit expansion"
+  },
+  {
+    "question": "John fills an 8 foot by 6 foot pool that is 7 feet deep. It costs $.2 per cubic foot to fill. How much does it cost to fill?",
+    "solution": "First, we need to find the volume of the pool. The volume of a rectangular prism (which this pool is) is found by multiplying the length, width, and height. So, 8 feet * 6 feet * 7 feet = 336 cubic feet.\n\nThen, we multiply the volume by the cost per cubic foot to find the total cost. So, 336 cubic feet * $.2 per cubic foot = $67.2.\n\nSo, it costs  $67.2 to fill the pool.\n#### 67.2",
+    "answer": "67.2",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "Elvis starts driving from his house and travels west for 6 hours. Then he turns around and travels east for 9 hours. If he was driving at an average speed of 15mph for both parts of the journey, how far is he from his house now?",
+    "solution": "During the first part of the journey he travels west for 6 hours at a speed of 15mph so he covered a distance of 6*15 = <<6*15=90>>90 miles\nThen he travels east at the same speed for 9 hours so he covered a distance of 9*15 = <<9*15=135>>135 miles\nHis distance from his house now is the difference between his east and west movements which is 135-90 = <<135-90=45>>45 miles\n#### 45",
+    "answer": "45",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "John has a pool that is 6 feet long, 4 feet wide, and 5 feet deep. He also has a separate hot tub that is 3 feet by 3 feet and 2 feet deep, but he decides not to fill it up today. The cost to fill the pool is $.1 per cubic foot. How much does it cost to fill the pool?",
+    "solution": "The pool has a base of 6*4=<<6*4=24>>24 square feet\nSo its volume was 24*5=<<24*5=120>>120 cubic feet\nSo it cost 120*.1=$<<120*.1=12>>12 to fill the pool\n#### 12",
+    "answer": "12",
+    "perturbation_type": "distraction insertion"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $20 per bag. If it costs $2 to transport each bag from the farm to the warehouse, and the trader sold all the bags at a rate of $30 each, how many bags did he sell?",
+    "solution": "We don't know how much money this merchant made in total after selling all the bags at a rate of $30 each. \n#### None",
+    "answer": "None",
+    "perturbation_type": "critical thinking"
+  },
+  {
+    "question": "John fills a 6-foot by 4-oot pool that is 5 feet deep.  It costs some money per cubic foot to fill.  How much does it cost to fill?",
+    "solution": "We don't know how much it cost per cubic foot to fill. \n#### None",
+    "answer": "None",
+    "perturbation_type": "critical thinking"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $5.5. Lani bought a pair of sunglasses at $30 and two bathrobes at $122.5 each. How much did they spend in all?",
+    "solution": "Ellen spent $100 + $5.5 = $<<100+5.5=105.5>>105.5.\nTwo bathrobes cost 2 x $122.5 = $<<2*122.5=245>>245.\nSo, Lani spent $30 +$245 =$<<30+245=275>>275.\nTherefore, they spent $105.5 + $275 = $<<105.5+275=380.5>>380.5 in all.\n#### 380.5",
+    "answer": "380.5",
+    "perturbation_type": "integer-decimal-fraction conversion"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $200 per bag. If it costs $20 to transport each bag from the farm to the warehouse, and the trader made a total profit of $4000 after selling all the bags at a rate of $300 each, how many bags did he sell?",
+    "solution": "The trader makes a profit of $300 - $200 = $100 per bag from selling the wheat alone. However, he also has to pay $20 for the transportation of each bag, so his total profit per bag is $100 - $20 = $80.\n\nIf the trader made a total profit of $4000, then he must have sold $4000 / $80 = 50 bags.\n\nSo, the trader sold  50 bags of wheat.\n#### 50",
+    "answer": "50",
+    "perturbation_type": "digit expansion"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $20.5 per bag. If it costs $2.5 to transport each bag from the farm to the warehouse, and the trader made a total profit of $412.5 after selling all the bags at a rate of $30.5 each, how many bags did he sell?",
+    "solution": "Each bag of wheat cost the trader $20.5+$2.5=$<<20.5+2.5=23>>23 (taking transportation costs into account)\nEach bag of wheat was sold for $30.5 each giving a profit of $30.5-$23=$<<30.5-23=7.5>>7.5 on each bag\nSince a total of $412.5 profit was made, the total number of bags sold is $412.5/$7.5=<<412.5/7.5=55>>55 bags\n#### 55",
+    "answer": "55",
+    "perturbation_type": "integer-decimal-fraction conversion"
+  },
+  {
+    "question": "Zoey and Sydney are having a watermelon seed spitting contest. Whoever spits their seeds the most total distance wins. They each get one watermelon. Zoey's has 40 seeds and she spits each one 10 feet. Sydney's has 35 seeds and she spits each one 12 feet. However, after the contest, they decide to add a twist. They agree to subtract the number of seeds in the watermelon with the least seeds from the one with the most seeds, and then multiply the result by the distance spat by the person with the least seeds. They then add this result to the total distance spat by both. What is the new average total distance spat?",
+    "solution": "First, calculate the total distance spat by Zoey by multiplying the number of seeds by the distance each one is spat: 40 seeds * 10 feet/seed = 400 feet\nThen do the same thing for Sydney: 35 seeds * 12 feet/seed = 420 feet\nThen subtract the number of seeds in Sydney's watermelon from the number in Zoey's: 40 seeds - 35 seeds = 5 seeds\nThen multiply that number by the distance Sydney spits each seed: 5 seeds * 12 feet/seed = 60 feet\nThen add that distance to the total distance spat by both: 60 feet + 400 feet + 420 feet = 880 feet\nSo the new average total distance spat is 880/2= 440 feet.\n#### 440",
+    "answer": "440",
+    "perturbation_type": "adding operation"
+  },
+  {
+    "question": "A merchant purchases several sacks of wheat from an agriculturalist for $20 each. The transportation cost for each sack from the agricultural land to the storage facility is $2. If the merchant gained a total profit of $400 after selling all the sacks for $30 each, what is the total number of sacks he sold?",
+    "solution": "Each bag of wheat cost the trader $20+$2=$<<20+2=22>>22 (taking transportation costs into account)\nEach bag of wheat was sold for $30 each giving a profit of $30-$22=$<<30-22=8>>8 on each bag\nSince a total of $400 profit was made, the total number of bags sold is $400/$8=<<400/8=50>>50 bags\n#### 50",
+    "answer": "50",
+    "perturbation_type": "problem understanding"
+  },
+  {
+    "question": "Raymond had a certain amount of money. He then saved $11 from his allowance and spent $5 on a comic book and $19 on a puzzle. Now he has $8 left. How much money did Raymond have initially?",
+    "solution": "Raymond then spent $5 + $19 = $<<5+19=24>>24.\nRaymond now has $8 left.\nSo after saving, he had $8 + $24 (spending) = $32.\nTherefore, Raymond initially had $32 - $11 =21.\n#### 21",
+    "answer": "21",
+    "perturbation_type": "reversing operation"
+  },
+  {
+    "question": "Mark was unwell for 2 months, during which he lost 15 pounds per month. If his final weight was 60 pounds, what was his initial weight?",
+    "solution": "Since Mark was losing 15 pounds each month, in 2 months he lost 15 * 2 = <<15*2=30>>30 pounds.\nAdding the weight lost to the final weight gives an initial weight of 60 + 30 = <<60+30=90>>90 pounds.\nMark's initial weight was 90 pounds.\n#### 90",
+    "answer": "90",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "Mark was unwell for a period of time, during which he lost 10 pounds per month. If his final weight was 70 pounds, what was his initial weight?",
+    "solution": "We don't know how many months Mark was unwell. \n#### None",
+    "answer": "None",
+    "perturbation_type": "critical thinking"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $5. Lani bought a pair of sunglasses at $30 and two same bathrobes . They spends 335 in total, so how much is one bathrobe?",
+    "solution": "Ellen spent $100 + $5 = $<<100+5=105>>105.\nSo, Lani spent 335-105=230,\nso one bathrobe costs (230-30)/2=100\n#### 100",
+    "answer": "100",
+    "perturbation_type": "reversing operation"
+  },
+  {
+    "question": "Ellen and Lani, who are sisters, decided to shop for gifts for their mother at the mall. Ellen purchased leggings that cost $100 and a picture frame priced at $5. On the other hand, Lani bought sunglasses for $30 and two bathrobes, each costing $100. What is the total amount of money they spent?",
+    "solution": "Ellen spent $100 + $5 = $<<100+5=105>>105.\nTwo bathrobes cost 2 x $100 = $<<2*100=200>>200.\nSo, Lani spent $30 +$200 =$<<30+200=230>>230.\nTherefore, they spent $105 + $230 = $<<105+230=335>>335 in all.\n#### 335",
+    "answer": "335",
+    "perturbation_type": "problem understanding"
+  },
+  {
+    "question": "Raymond had $31. Then he saved $15 from his allowance and spent $7 on a comic book and $23 on a puzzle. How much money does Raymond have left?",
+    "solution": "Raymond initially had $31 and saved $15, so he had $31 + $15 =  46.\nThen he spent $7 on a comic book and $23 on a puzzle, so he spent $7 + $23 =  30.\nTherefore, Raymond has $46 - $30 = $ 16 left.\n#### 16",
+    "answer": "16",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "John fills a 6 foot by 4 foot pool that is 5 feet deep.  It cost some money per cubic foot to fill.  It costs $12 to fill. How much is each cubic foot?",
+    "solution": "The pool has a base of 6*4=<<6*4=24>>24 square feet\nSo its volume was 24*5=<<24*5=120>>120 cubic feet\n12/120=0.1\n#### 0.1",
+    "answer": "0.1",
+    "perturbation_type": "reversing operation"
+  },
+  {
+    "question": "Zoey and Sydney are having a watermelon seed spitting contest. Whoever spits their seeds the most total distance wins. They each get one watermelon. Zoey's has 100 seeds and she spits each one 10 feet. Sydney's has 35 she spits each one 12 feet. What is the average total distance spat?",
+    "solution": "Zoey spits a total distance of 1000 feet because 100 x 10 = <<100*10=1000>>1000\nSydney spits a total distance of 420 feet because 35 x 12 = <<35*12=420>>420\nThis totals to 1420 feet because 1000 + 420 = <<1000+420=1420>>1420\nThe average total distance is 710 because 1420 / 2 = <<1420/2=710>>710\n#### 710",
+    "answer": "710",
+    "perturbation_type": "digit expansion"
+  },
+  {
+    "question": "In a competition between Zoey and Sydney, they are spitting watermelon seeds to see who can achieve the greatest overall distance. Each participant gets a single watermelon. Zoey's watermelon contains 40 seeds, and she manages to spit each one a distance of 10 feet. Sydney's watermelon, on the other hand, has 35 seeds, and she spits each one 12 feet. Can you calculate the mean total distance that the seeds were spat?",
+    "solution": "Zoey spits a total distance of 400 feet because 40 x 10 = <<40*10=400>>400\nSydney spits a total distance of 420 feet because 35 x 12 = <<35*12=420>>420\nThis totals to 820 feet because 400 + 420 = <<400+420=820>>820\nThe average total distance is 410 because 820 / 2 = <<820/2=410>>410\n#### 410",
+    "answer": "410",
+    "perturbation_type": "problem understanding"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $150 and a photo frame for $8. Lani bought a pair of sunglasses at $50 and two bathrobes at $120 each. How much did they spend in all?",
+    "solution": "Ellen spent $150 + $8 = $<<150+8=158>>158.\nTwo bathrobes cost 2 x $120 = $<<2*120=240>>240.\nSo, Lani spent $50 +$240 =$<<50+240=290>>290.\nTherefore, they spent $158 + $290 = $<<158+290=448>>448 in all.\n#### 448",
+    "answer": "448",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $5. Lani bought a pair of sunglasses at $30 and two bathrobes at $100 each. She also bought a pair of slippers for their grandma that cost $15. How much did they spend in all?",
+    "solution": "Ellen spent $100 + $5 = $<<100+5=105>>105.\nTwo bathrobes cost 2 x $100 = $<<2*100=200>>200.\nSo, Lani spent $30 +$200 =$<<30+200=230>>230.\nTherefore, they spent $105 + $230 +$15= $<<105+230+15=350>>350 in all.\n#### 350",
+    "answer": "350",
+    "perturbation_type": "adding operation"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $40 per bag. If it costs $4 to transport each bag from the farm to the warehouse, and the trader made a total profit of $800 after selling all the bags at a rate of $60 each, how many bags did he sell?",
+    "solution": "The merchant makes a profit of $60 - $40 - $4 = $16 per bag of wheat.\nTherefore, the merchant sold $800 / $16 =  50 bags of wheat.\n#### 50",
+    "answer": "50",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "Raymond had $21. Then he saved $11 from his allowance and spent $5 on a comic book and $19 on a puzzle. Raymond also had a $2 coupon but found it expired. How much money does Raymond have left?",
+    "solution": "Raymond started with $21 + $11 = $<<21+11=32>>32.\nRaymond then spent $5 + $19 = $<<5+19=24>>24.\nRaymond now has $32 - $24 = $<<32-24=8>>8 left.\n#### 8",
+    "answer": "8",
+    "perturbation_type": "distraction insertion"
+  },
+  {
+    "question": "John has a pool with dimensions of 6 feet by 4 feet and a depth of 5 feet. If the cost to fill the pool is $.1 for every cubic foot, what is the total cost to fill the pool?",
+    "solution": "The pool has a base of 6*4=<<6*4=24>>24 square feet\nSo its volume was 24*5=<<24*5=120>>120 cubic feet\nSo it cost 120*.1=$<<120*.1=12>>12 to fill the pool\n#### 12",
+    "answer": "12",
+    "perturbation_type": "problem understanding"
+  },
+  {
+    "question": "John has two pools in his backyard. The first pool is 6 feet by 4 feet and is 5 feet deep. The second pool is half the size of the first pool in every dimension. It costs $.1 per cubic foot to fill each pool. If John fills both pools, how much will it cost him in total?",
+    "solution": "First, we need to find the volume of each pool. \n\nThe volume of the first pool is length * width * depth = 6 feet * 4 feet * 5 feet = 120 cubic feet.\n\nThe second pool is half the size of the first pool in every dimension, so its volume is (6 feet/2) * (4 feet/2) * (5 feet/2) = 3 feet * 2 feet * 2.5 feet = 15 cubic feet.\n\nThe total volume of both pools is 120 cubic feet + 15 cubic feet = 135 cubic feet.\n\nSince it costs $.1 per cubic foot to fill each pool, the total cost to fill both pools is 135 cubic feet * $.1/cubic foot = $13.5.\n\nSo, it will cost John $13.5 in total to fill both pools.\n#### 13.5",
+    "answer": "13.5",
+    "perturbation_type": "adding operation"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $20 per bag. Each bag of wheat weighs 60 pounds. If it costs $2 to transport each bag from the farm to the warehouse, and the trader made a total profit of $400 after selling all the bags at a rate of $30 each, how many bags did he sell?",
+    "solution": "Each bag of wheat cost the trader $20+$2=$<<20+2=22>>22 (taking transportation costs into account)\nEach bag of wheat was sold for $30 each giving a profit of $30-$22=$<<30-22=8>>8 on each bag\nSince a total of $400 profit was made, the total number of bags sold is $400/$8=<<400/8=50>>50 bags\n#### 50",
+    "answer": "50",
+    "perturbation_type": "distraction insertion"
+  },
+  {
+    "question": "John fills a 60 foot by 40 foot pool that is 50 feet deep. It costs $.1 per cubic foot to fill. How much does it cost to fill?",
+    "solution": "First, we need to find the volume of the pool. The volume of a rectangular prism (which this pool is) is found by multiplying the length, width, and height. So, 60 feet * 40 feet * 50 feet = 120,000 cubic feet.\n\nThen, we multiply the volume by the cost per cubic foot to find the total cost. So, 120,000 cubic feet * $.1 per cubic foot = $12,000.\n\nSo, it costs  $12,000 to fill the pool.\n#### 12000",
+    "answer": "12000",
+    "perturbation_type": "digit expansion"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $20 per bag. If it costs $2 to transport each bag from the farm to the warehouse, and after selling all the bags at a rate of $30 each and paid $50 for the storage fee, the trader made a total profit of $400 how many bags did he sell?",
+    "solution": "Plus the transport fee,  the cost is 20+2=22\nThe trader earns 400+50=450 after selling all the bags,\nEach bag made a profit of 30-22=$8\nSo there are 450/8=55 bags\n#### 55",
+    "answer": "55",
+    "perturbation_type": "adding operation"
+  },
+  {
+    "question": "Zoey and Sydney are having a watermelon seed spitting contest. Whoever spits their seeds the most total distance wins. They each get one watermelon. Zoey's has 40 seeds and she spits each one 10.5 feet. Sydney's has 35 she spits each one 12.5 feet. What is the average total distance spat?",
+    "solution": "Zoey spits a total distance of 420 feet because 40 x 10.5 = <<40*10.5=420>>420\nSydney spits a total distance of 437.5 feet because 35 x 12.5 = <<35*12.5=437.5>>437.5\nThis totals to 857.5 feet because 420 + 437.5 = <<420+437.5=857.5>>857.5\nThe average total distance is 428.75 because 857.5 / 2 = <<857.5/2=428.75>>428.75\n#### 428.75",
+    "answer": "428.75",
+    "perturbation_type": "integer-decimal-fraction conversion"
+  },
+  {
+    "question": "Raymond had some money. Then he saved $11 from his allowance and spent $5 on a comic book and $19 on a puzzle. How much money does Raymond have left?",
+    "solution": "We don't know the initial money\n#### None",
+    "answer": "None",
+    "perturbation_type": "critical thinking"
+  },
+  {
+    "question": "Mark was unwell for 3 months, during which he lost 10 pounds per month. During his recovery, he managed to regain 5 pounds per month for 2 months. If his final weight after recovery was 70 pounds, what was his initial weight before he fell ill?",
+    "solution": "Mark lost a total of 3 months * 10 pounds/month = 30 pounds when he was unwell.\n\nDuring his recovery, he regained a total of 2 months * 5 pounds/month = 10 pounds.\n\nSo, his weight before he fell ill was his final weight after recovery + the weight he lost - the weight he regained = 70 pounds + 30 pounds - 10 pounds =  90 pounds.\n#### 90",
+    "answer": "90",
+    "perturbation_type": "adding operation"
+  },
+  {
+    "question": "Mark was unwell for 3 months, during which he lost 10 pounds per month. If his final weight was 100 pounds, what was his initial weight?",
+    "solution": "Since Mark was losing 10 pounds each month, in 3 months he lost 10 * 3 = <<10*3=30>>30 pounds.\nAdding the weight lost to the final weight gives an initial weight of 100 + 30 = <<100+30=130>>130 pounds.\nMark's initial weight was 130 pounds.\n#### 130",
+    "answer": "130",
+    "perturbation_type": "digit expansion"
+  },
+  {
+    "question": "Zoey and Sydney are having a watermelon seed spitting contest at a local park. Whoever spits their seeds the most total distance wins. They each get one watermelon. Zoey's watermelon, which weighs 15 pounds, has 40 seeds and she spits each one 10 feet. Sydney's watermelon, which weighs 13 pounds, has 35 seeds and she spits each one 12 feet. There are 20 other people at the park, but they are not participating in the contest. What is the average total distance spat by Zoey and Sydney?",
+    "solution": "Zoey spits a total distance of 400 feet because 40 x 10 = <<40*10=400>>400\nSydney spits a total distance of 420 feet because 35 x 12 = <<35*12=420>>420\nThis totals to 820 feet because 400 + 420 = <<400+420=820>>820\nThe average total distance is 410 because 820 / 2 = <<820/2=410>>410\n#### 410",
+    "answer": "410",
+    "perturbation_type": "distraction insertion"
+  },
+  {
+    "question": "Mark was unwell for 3 months, during which he lost 10.5 pounds per month. If his final weight was 70.5 pounds, what was his initial weight?",
+    "solution": "Since Mark was losing 10.5 pounds each month, in 3 months he lost 10.5 * 3 = <<10.5*3=31.5>>31.5 pounds.\nAdding the weight lost to the final weight gives an initial weight of 70.5 + 31.5 = <<70.5+31.5=102>>102 pounds.\nMark's initial weight was 102 pounds.\n#### 102",
+    "answer": "102",
+    "perturbation_type": "integer-decimal-fraction conversion"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer. If it costs $2 to transport each bag from the farm to the warehouse, and the trader makes a total profit of $400 after selling all the bags at a rate of $30 each, how much does a bag of wheat cost if he sold 50 bags?",
+    "solution": "Supposing a bag of wheat costs $x.\nThe total cost of buying the bags is 50 bags * $x/bag = $50x.\nThe total cost of transporting the bags is 50 bags * $2/bag = $100.\nSo, the total cost of the bags and transportation is $50x + $100.\nThe total income from selling the bags is 50 bags * $30/bag = $1500.\nTherefore, the total profit the trader made is $1500 - ($50x + $100) =$400\nx=20\n#### 20",
+    "answer": "20",
+    "perturbation_type": "reversing operation"
+  },
+  {
+    "question": "Mark was unwell for 3 months and had injections three times a day, during which he lost 10 pounds per month. If his final weight was 70 pounds, what was his initial weight?",
+    "solution": "Since Mark was losing 10 pounds each month, in 3 months he lost 10 * 3 = <<10*3=30>>30 pounds.\nAdding the weight lost to the final weight gives an initial weight of 70 + 30 = <<70+30=100>>100 pounds.\nMark's initial weight was 100 pounds.\n#### 100",
+    "answer": "100",
+    "perturbation_type": "distraction insertion"
+  }
+]

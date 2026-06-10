@@ -1,0 +1,50 @@
+trace_id,question_id,model,correct,predicted_answer,gold_answer,tokens_in,tokens_out,latency_s,has_code,cost_usd
+baseline_olympiad_gpt41_n50_20260609_0,1820,gpt-4.1,False,0,n^{2}+1,2929,1170,13.564,True,0.015218
+baseline_olympiad_gpt41_n50_20260609_1,2962,gpt-4.1,True,0,0,2252,894,8.902,True,0.011656
+baseline_olympiad_gpt41_n50_20260609_2,3026,gpt-4.1,False,800,400,2432,809,8.23,True,0.011336
+baseline_olympiad_gpt41_n50_20260609_3,3080,gpt-4.1,True,20,20,4018,986,10.746,True,0.015924
+baseline_olympiad_gpt41_n50_20260609_4,2766,gpt-4.1,False,20,12,4342,1355,351.942,True,0.019524
+baseline_olympiad_gpt41_n50_20260609_5,2460,gpt-4.1,True,"(1, 1006),\ (3, 331),\ (11, 31)","(1,1006),(3,331),(11,31)",2000,436,4.078,True,0.007488000000000001
+baseline_olympiad_gpt41_n50_20260609_6,2731,gpt-4.1,True,\frac{27}{2},\frac{27}{2},1874,269,4.091,True,0.005900000000000001
+baseline_olympiad_gpt41_n50_20260609_7,1883,gpt-4.1,False,4,\lceil n / 2\rceil+1,2388,648,8.012,True,0.00996
+baseline_olympiad_gpt41_n50_20260609_8,2796,gpt-4.1,False,\text{No integer solution for } AC \text{ found in the tested range.},146,23010,4084,132.802,True,0.078692
+baseline_olympiad_gpt41_n50_20260609_9,1882,gpt-4.1,False,n + 1,n^{2}-n+1,2483,515,7.063,True,0.009086
+baseline_olympiad_gpt41_n50_20260609_10,3047,gpt-4.1,True,5,5,1783,238,4.793,True,0.005470000000000001
+baseline_olympiad_gpt41_n50_20260609_11,2466,gpt-4.1,True,2,2,1912,349,4.352,True,0.006616
+baseline_olympiad_gpt41_n50_20260609_12,2583,gpt-4.1,True,-\frac{8}{3},-\frac{8}{3},2149,604,6.191,True,0.009130000000000001
+baseline_olympiad_gpt41_n50_20260609_13,1747,gpt-4.1,False,\frac{(-5 + \sqrt{73})\sqrt{9 - \sqrt{73}}}{(11 - \sqrt{73})^2},M=\frac{9}{32} \sqrt{2},11638,1845,18.042,True,0.038036
+baseline_olympiad_gpt41_n50_20260609_14,3041,gpt-4.1,False,\frac{8}{9},-\frac{32}{9},2052,531,5.468,True,0.008351999999999998
+baseline_olympiad_gpt41_n50_20260609_15,2486,gpt-4.1,False,"x = -1, \quad x = 0","0,-1,-\frac{3}{2}",8161,2253,18.068,True,0.034346
+baseline_olympiad_gpt41_n50_20260609_16,2606,gpt-4.1,True,979,979,2055,475,5.077,True,0.00791
+baseline_olympiad_gpt41_n50_20260609_17,2977,gpt-4.1,True,24,24,1833,277,2.807,True,0.005882
+baseline_olympiad_gpt41_n50_20260609_18,2653,gpt-4.1,True,25,25,3594,521,7.218,True,0.011356000000000002
+baseline_olympiad_gpt41_n50_20260609_19,3092,gpt-4.1,True,12,12,1999,432,8.079,True,0.0074540000000000006
+baseline_olympiad_gpt41_n50_20260609_20,3077,gpt-4.1,True,102018,102018,1763,192,4.901,True,0.005062
+baseline_olympiad_gpt41_n50_20260609_21,2746,gpt-4.1,True,\frac{1}{6084},\frac{1}{6084},1949,301,3.709,True,0.006305999999999999
+baseline_olympiad_gpt41_n50_20260609_22,3001,gpt-4.1,True,5,5,2652,678,10.485,True,0.010728000000000001
+baseline_olympiad_gpt41_n50_20260609_23,2888,gpt-4.1,False,2\sqrt{19 - 3\sqrt{15}},2 \sqrt{10},2316,706,5.998,True,0.010280000000000001
+baseline_olympiad_gpt41_n50_20260609_24,2736,gpt-4.1,True,\frac{14}{5},\frac{14}{5},10198,2123,17.811,True,0.037380000000000004
+baseline_olympiad_gpt41_n50_20260609_25,2328,gpt-4.1,True,-\frac{30}{17},-\frac{30}{17},2325,442,4.094,True,0.008186
+baseline_olympiad_gpt41_n50_20260609_26,2759,gpt-4.1,False,,-2019,37285,4625,42.179,True,0.11157
+baseline_olympiad_gpt41_n50_20260609_27,2660,gpt-4.1,True,9,9,2182,626,6.214,True,0.009372
+baseline_olympiad_gpt41_n50_20260609_28,2987,gpt-4.1,False,-7 + 7\sqrt{2},3-\sqrt{2},2628,899,10.038,True,0.012448
+baseline_olympiad_gpt41_n50_20260609_29,2502,gpt-4.1,False,-\frac{3}{2} < k \leq -\frac{1}{2},"[-1,-\frac{1}{2}]",32395,3562,37.089,True,0.09328600000000001
+baseline_olympiad_gpt41_n50_20260609_30,2609,gpt-4.1,True,20\sqrt{7},20 \sqrt{7},7067,721,9.927,True,0.019902000000000003
+baseline_olympiad_gpt41_n50_20260609_31,2902,gpt-4.1,True,9,9,2590,883,10.151,True,0.012244000000000001
+baseline_olympiad_gpt41_n50_20260609_32,2948,gpt-4.1,False,\frac{13 \sqrt{3276 \sqrt{21} + 22449}}{3780},\frac{222}{13},4258,2507,28.149,True,0.028572
+baseline_olympiad_gpt41_n50_20260609_33,2827,gpt-4.1,True,47,47,3626,777,6.99,True,0.013468
+baseline_olympiad_gpt41_n50_20260609_35,2359,gpt-4.1,True,x = \frac{17}{4},4.25,2040,375,3.787,True,0.00708
+baseline_olympiad_gpt41_n50_20260609_36,2845,gpt-4.1,True,28,28,1934,337,5.342,True,0.006564
+baseline_olympiad_gpt41_n50_20260609_37,2578,gpt-4.1,True,\frac{2}{3},\frac{2}{3},1930,281,3.452,True,0.006108000000000001
+baseline_olympiad_gpt41_n50_20260609_38,2534,gpt-4.1,True,\frac{1}{90},\frac{1}{90},1846,262,3.724,True,0.005788
+baseline_olympiad_gpt41_n50_20260609_39,2763,gpt-4.1,True,34,34,1917,275,4.629,True,0.006034
+baseline_olympiad_gpt41_n50_20260609_40,2717,gpt-4.1,False,104857600000000000000000000,140,2506,596,6.803,True,0.00978
+baseline_olympiad_gpt41_n50_20260609_41,2312,gpt-4.1,True,\frac{11}{36},\frac{11}{36},1843,250,3.226,True,0.005686
+baseline_olympiad_gpt41_n50_20260609_42,2377,gpt-4.1,True,\frac{27}{64},\frac{27}{64},2005,462,5.509,True,0.007706
+baseline_olympiad_gpt41_n50_20260609_43,1709,gpt-4.1,True,"1,\,3,\,5","1,3,5",6042,1317,12.178,True,0.02262
+baseline_olympiad_gpt41_n50_20260609_44,2185,gpt-4.1,False,16m - 4,6m,2124,637,7.426,True,0.009343999999999998
+baseline_olympiad_gpt41_n50_20260609_45,2739,gpt-4.1,True,2^{1/3} \left( (45 - 17\sqrt{7})^{4/3} + (45 + 17\sqrt{7})^{4/3} \right),508,3639,523,7.175,True,0.011462
+baseline_olympiad_gpt41_n50_20260609_46,2441,gpt-4.1,True,100,100,1902,341,3.428,True,0.006532
+baseline_olympiad_gpt41_n50_20260609_47,2625,gpt-4.1,True,1680,1680,4574,585,6.163,True,0.013828
+baseline_olympiad_gpt41_n50_20260609_48,2435,gpt-4.1,True,18.8,18.8^{\circ},1914,298,3.593,True,0.0062120000000000005
+baseline_olympiad_gpt41_n50_20260609_49,2165,gpt-4.1,False,"\text{There are no positive integer solutions } (x, y, z) \text{ to the equation } x^3(y^3 + z^3) = 2012(x y z + 2) \text{ with } x \leq y \leq z.","(2,251,252)",5876,1382,11.992,True,0.022808000000000002

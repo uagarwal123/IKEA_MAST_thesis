@@ -1,0 +1,14 @@
+experiments:
+  - name: olympiad_gemini25flash_zero_shot
+    model: gemini-2.5-flash
+    backend: genai
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 0
+    dataset_path:
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434

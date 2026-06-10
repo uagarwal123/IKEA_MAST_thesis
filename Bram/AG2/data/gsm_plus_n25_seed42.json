@@ -1,0 +1,152 @@
+[
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $5.5. Lani bought a pair of sunglasses at $30 and two bathrobes at $122.5 each. How much did they spend in all?",
+    "solution": "Ellen spent $100 + $5.5 = $<<100+5.5=105.5>>105.5.\nTwo bathrobes cost 2 x $122.5 = $<<2*122.5=245>>245.\nSo, Lani spent $30 +$245 =$<<30+245=275>>275.\nTherefore, they spent $105.5 + $275 = $<<105.5+275=380.5>>380.5 in all.\n#### 380.5",
+    "answer": "380.5",
+    "perturbation_type": "integer-decimal-fraction conversion"
+  },
+  {
+    "question": "Mark fell ill for a period of three months, and he lost 10 pounds each month during his illness. If he weighed 70 pounds at the end of this period, what was his weight before he got sick?",
+    "solution": "Since Mark was losing 10 pounds each month, in 3 months he lost 10 * 3 = <<10*3=30>>30 pounds.\nAdding the weight lost to the final weight gives an initial weight of 70 + 30 = <<70+30=100>>100 pounds.\nMark's initial weight was 100 pounds.\n#### 100",
+    "answer": "100",
+    "perturbation_type": "problem understanding"
+  },
+  {
+    "question": "Mark was unwell for 2 months, during which he lost 15 pounds per month. If his final weight was 60 pounds, what was his initial weight?",
+    "solution": "Since Mark was losing 15 pounds each month, in 2 months he lost 15 * 2 = <<15*2=30>>30 pounds.\nAdding the weight lost to the final weight gives an initial weight of 60 + 30 = <<60+30=90>>90 pounds.\nMark's initial weight was 90 pounds.\n#### 90",
+    "answer": "90",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $5. Lani bought a pair of sunglasses at $30 and two bathrobes. How much did they spend in all?",
+    "solution": "We don't know how much money each bathrobes cost. \n#### None",
+    "answer": "None",
+    "perturbation_type": "critical thinking"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $5. Lani bought a pair of sunglasses at $30 and two bathrobes at $100 each. She also bought a pair of slippers for their grandma that cost $15. How much did they spend in all?",
+    "solution": "Ellen spent $100 + $5 = $<<100+5=105>>105.\nTwo bathrobes cost 2 x $100 = $<<2*100=200>>200.\nSo, Lani spent $30 +$200 =$<<30+200=230>>230.\nTherefore, they spent $105 + $230 +$15= $<<105+230+15=350>>350 in all.\n#### 350",
+    "answer": "350",
+    "perturbation_type": "adding operation"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $20.5 per bag. If it costs $2.5 to transport each bag from the farm to the warehouse, and the trader made a total profit of $412.5 after selling all the bags at a rate of $30.5 each, how many bags did he sell?",
+    "solution": "Each bag of wheat cost the trader $20.5+$2.5=$<<20.5+2.5=23>>23 (taking transportation costs into account)\nEach bag of wheat was sold for $30.5 each giving a profit of $30.5-$23=$<<30.5-23=7.5>>7.5 on each bag\nSince a total of $412.5 profit was made, the total number of bags sold is $412.5/$7.5=<<412.5/7.5=55>>55 bags\n#### 55",
+    "answer": "55",
+    "perturbation_type": "integer-decimal-fraction conversion"
+  },
+  {
+    "question": "Mark was unwell for 3 months, during which he lost 10 pounds per month. If his initial weight was 100 pounds, what was his final weight?",
+    "solution": "Mark lost a total of 3 months * 10 pounds/month = 30 pounds.\n\nSo, his final weight was 100 pounds - 30 pounds =  70 pounds.\n#### 70",
+    "answer": "70",
+    "perturbation_type": "reversing operation"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $150 and a photo frame for $8. Lani bought a pair of sunglasses at $50 and two bathrobes at $120 each. How much did they spend in all?",
+    "solution": "Ellen spent $150 + $8 = $<<150+8=158>>158.\nTwo bathrobes cost 2 x $120 = $<<2*120=240>>240.\nSo, Lani spent $50 +$240 =$<<50+240=290>>290.\nTherefore, they spent $158 + $290 = $<<158+290=448>>448 in all.\n#### 448",
+    "answer": "448",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "Mark was unwell for a period of time, during which he lost 10 pounds per month. If his final weight was 70 pounds, what was his initial weight?",
+    "solution": "We don't know how many months Mark was unwell. \n#### None",
+    "answer": "None",
+    "perturbation_type": "critical thinking"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $12. Lani bought a pair of sunglasses at $120 and two bathrobes at $100 each. How much did they spend in all?",
+    "solution": "Ellen spent $100 + $12 = $<<100+12=112>>112.\nTwo bathrobes cost 2 x $100 = $<<2*100=200>>200.\nSo, Lani spent $120 +$200 =$<<120+200=320>>320.\nTherefore, they spent $112 + $320 = $<<112+320=432>>432 in all.\n#### 432",
+    "answer": "432",
+    "perturbation_type": "digit expansion"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $40 per bag. If it costs $4 to transport each bag from the farm to the warehouse, and the trader made a total profit of $800 after selling all the bags at a rate of $60 each, how many bags did he sell?",
+    "solution": "The merchant makes a profit of $60 - $40 - $4 = $16 per bag of wheat.\nTherefore, the merchant sold $800 / $16 =  50 bags of wheat.\n#### 50",
+    "answer": "50",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $20 per bag. If it costs $2 to transport each bag from the farm to the warehouse, and after selling all the bags at a rate of $30 each and paid $50 for the storage fee, the trader made a total profit of $400 how many bags did he sell?",
+    "solution": "Plus the transport fee,  the cost is 20+2=22\nThe trader earns 400+50=450 after selling all the bags,\nEach bag made a profit of 30-22=$8\nSo there are 450/8=55 bags\n#### 55",
+    "answer": "55",
+    "perturbation_type": "adding operation"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer. If it costs $2 to transport each bag from the farm to the warehouse, and the trader makes a total profit of $400 after selling all the bags at a rate of $30 each, how much does a bag of wheat cost if he sold 50 bags?",
+    "solution": "Supposing a bag of wheat costs $x.\nThe total cost of buying the bags is 50 bags * $x/bag = $50x.\nThe total cost of transporting the bags is 50 bags * $2/bag = $100.\nSo, the total cost of the bags and transportation is $50x + $100.\nThe total income from selling the bags is 50 bags * $30/bag = $1500.\nTherefore, the total profit the trader made is $1500 - ($50x + $100) =$400\nx=20\n#### 20",
+    "answer": "20",
+    "perturbation_type": "reversing operation"
+  },
+  {
+    "question": "John fills an 8 foot by 6 foot pool that is 7 feet deep. It costs $.2 per cubic foot to fill. How much does it cost to fill?",
+    "solution": "First, we need to find the volume of the pool. The volume of a rectangular prism (which this pool is) is found by multiplying the length, width, and height. So, 8 feet * 6 feet * 7 feet = 336 cubic feet.\n\nThen, we multiply the volume by the cost per cubic foot to find the total cost. So, 336 cubic feet * $.2 per cubic foot = $67.2.\n\nSo, it costs  $67.2 to fill the pool.\n#### 67.2",
+    "answer": "67.2",
+    "perturbation_type": "numerical substitution"
+  },
+  {
+    "question": "Mark was unwell for 3 months, during which he lost 10 pounds per month. If his final weight was 100 pounds, what was his initial weight?",
+    "solution": "Since Mark was losing 10 pounds each month, in 3 months he lost 10 * 3 = <<10*3=30>>30 pounds.\nAdding the weight lost to the final weight gives an initial weight of 100 + 30 = <<100+30=130>>130 pounds.\nMark's initial weight was 130 pounds.\n#### 130",
+    "answer": "130",
+    "perturbation_type": "digit expansion"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $5. She also saw a beautiful necklace for $50 but decided not to buy it. Lani bought a pair of sunglasses at $30 and two bathrobes at $100 each. She also considered buying a hat for $20 but eventually decided against it. How much did they spend in all?",
+    "solution": "Ellen spent $100 + $5 = $<<100+5=105>>105.\nTwo bathrobes cost 2 x $100 = $<<2*100=200>>200.\nSo, Lani spent $30 +$200 =$<<30+200=230>>230.\nTherefore, they spent $105 + $230 = $<<105+230=335>>335 in all.\n#### 335",
+    "answer": "335",
+    "perturbation_type": "distraction insertion"
+  },
+  {
+    "question": "Ellen and Lani, who are sisters, decided to shop for gifts for their mother at the mall. Ellen purchased leggings that cost $100 and a picture frame priced at $5. On the other hand, Lani bought sunglasses for $30 and two bathrobes, each costing $100. What is the total amount of money they spent?",
+    "solution": "Ellen spent $100 + $5 = $<<100+5=105>>105.\nTwo bathrobes cost 2 x $100 = $<<2*100=200>>200.\nSo, Lani spent $30 +$200 =$<<30+200=230>>230.\nTherefore, they spent $105 + $230 = $<<105+230=335>>335 in all.\n#### 335",
+    "answer": "335",
+    "perturbation_type": "problem understanding"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $20 per bag. Each bag of wheat weighs 60 pounds. If it costs $2 to transport each bag from the farm to the warehouse, and the trader made a total profit of $400 after selling all the bags at a rate of $30 each, how many bags did he sell?",
+    "solution": "Each bag of wheat cost the trader $20+$2=$<<20+2=22>>22 (taking transportation costs into account)\nEach bag of wheat was sold for $30 each giving a profit of $30-$22=$<<30-22=8>>8 on each bag\nSince a total of $400 profit was made, the total number of bags sold is $400/$8=<<400/8=50>>50 bags\n#### 50",
+    "answer": "50",
+    "perturbation_type": "distraction insertion"
+  },
+  {
+    "question": "A merchant purchases several sacks of wheat from an agriculturalist for $20 each. The transportation cost for each sack from the agricultural land to the storage facility is $2. If the merchant gained a total profit of $400 after selling all the sacks for $30 each, what is the total number of sacks he sold?",
+    "solution": "Each bag of wheat cost the trader $20+$2=$<<20+2=22>>22 (taking transportation costs into account)\nEach bag of wheat was sold for $30 each giving a profit of $30-$22=$<<30-22=8>>8 on each bag\nSince a total of $400 profit was made, the total number of bags sold is $400/$8=<<400/8=50>>50 bags\n#### 50",
+    "answer": "50",
+    "perturbation_type": "problem understanding"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $20 per bag. If it costs $2 to transport each bag from the farm to the warehouse, and the trader sold all the bags at a rate of $30 each, how many bags did he sell?",
+    "solution": "We don't know how much money this merchant made in total after selling all the bags at a rate of $30 each. \n#### None",
+    "answer": "None",
+    "perturbation_type": "critical thinking"
+  },
+  {
+    "question": "Mark was unwell for 3 months, during which he lost 10.5 pounds per month. If his final weight was 70.5 pounds, what was his initial weight?",
+    "solution": "Since Mark was losing 10.5 pounds each month, in 3 months he lost 10.5 * 3 = <<10.5*3=31.5>>31.5 pounds.\nAdding the weight lost to the final weight gives an initial weight of 70.5 + 31.5 = <<70.5+31.5=102>>102 pounds.\nMark's initial weight was 102 pounds.\n#### 102",
+    "answer": "102",
+    "perturbation_type": "integer-decimal-fraction conversion"
+  },
+  {
+    "question": "Mark was unwell for 3 months, during which he lost 10 pounds per month. During his recovery, he managed to regain 5 pounds per month for 2 months. If his final weight after recovery was 70 pounds, what was his initial weight before he fell ill?",
+    "solution": "Mark lost a total of 3 months * 10 pounds/month = 30 pounds when he was unwell.\n\nDuring his recovery, he regained a total of 2 months * 5 pounds/month = 10 pounds.\n\nSo, his weight before he fell ill was his final weight after recovery + the weight he lost - the weight he regained = 70 pounds + 30 pounds - 10 pounds =  90 pounds.\n#### 90",
+    "answer": "90",
+    "perturbation_type": "adding operation"
+  },
+  {
+    "question": "Ellen and her sister, Lani, went to the mall to buy presents for their mom. Ellen bought a pair of leggings for $100 and a photo frame for $5. Lani bought a pair of sunglasses at $30 and two same bathrobes . They spends 335 in total, so how much is one bathrobe?",
+    "solution": "Ellen spent $100 + $5 = $<<100+5=105>>105.\nSo, Lani spent 335-105=230,\nso one bathrobe costs (230-30)/2=100\n#### 100",
+    "answer": "100",
+    "perturbation_type": "reversing operation"
+  },
+  {
+    "question": "Mark was unwell for 3 months and had injections three times a day, during which he lost 10 pounds per month. If his final weight was 70 pounds, what was his initial weight?",
+    "solution": "Since Mark was losing 10 pounds each month, in 3 months he lost 10 * 3 = <<10*3=30>>30 pounds.\nAdding the weight lost to the final weight gives an initial weight of 70 + 30 = <<70+30=100>>100 pounds.\nMark's initial weight was 100 pounds.\n#### 100",
+    "answer": "100",
+    "perturbation_type": "distraction insertion"
+  },
+  {
+    "question": "A trader buys some bags of wheat from a farmer at a rate of $200 per bag. If it costs $20 to transport each bag from the farm to the warehouse, and the trader made a total profit of $4000 after selling all the bags at a rate of $300 each, how many bags did he sell?",
+    "solution": "The trader makes a profit of $300 - $200 = $100 per bag from selling the wheat alone. However, he also has to pay $20 for the transportation of each bag, so his total profit per bag is $100 - $20 = $80.\n\nIf the trader made a total profit of $4000, then he must have sold $4000 / $80 = 50 bags.\n\nSo, the trader sold  50 bags of wheat.\n#### 50",
+    "answer": "50",
+    "perturbation_type": "digit expansion"
+  }
+]
