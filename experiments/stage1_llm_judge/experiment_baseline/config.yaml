@@ -1,0 +1,197 @@
+experiments:
+  # ── Claude Sonnet 4.6 
+  - name: claude-sonnet-4-6_zero_shot
+    model: claude-sonnet-4-6
+    backend: anthropic
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 0
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
+
+  - name: claude-sonnet-4-6_few_shot
+    model: claude-sonnet-4-6
+    backend: anthropic
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 1
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk- 
+
+  # ── Gemini 2.5 Pro 
+  - name: gemini-2.5-pro_zero_shot
+    model: gemini-2.5-pro
+    backend: genai
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 0
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
+
+  - name: gemini-2.5-pro_few_shot
+    model: gemini-2.5-pro
+    backend: genai
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 1
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
+
+  # ── GPT-4.1 
+  - name: gpt-4.1_zero_shot
+    model: gpt-4.1
+    backend: uva
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 0
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
+
+  - name: gpt-4.1_few_shot
+    model: gpt-4.1
+    backend: uva
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 1
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
+
+  # ── GPT-5 
+  - name: gpt-5_zero_shot
+    model: gpt-5
+    backend: uva
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 0
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
+
+  - name: gpt-5_few_shot
+    model: gpt-5
+    backend: uva
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 1
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
+
+# Ollama
+  - name: gemma_zero_shot
+    model: gemma4:31b
+    backend: ollama
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 0
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
+
+  - name: gemma_few_shot
+    model: gemma4:31b
+    backend: ollama
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 1
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
+
+  - name: qwen_zero_shot
+    model: qwen3:32b
+    backend: ollama
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 0
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
+  
+  - name: qwen_few_shot
+    model: qwen3:32b
+    backend: ollama
+    temperature: 0.0
+    system_prompt:
+    reasoning: false
+    shots: 1
+    slice_n: 3
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    genai_project: ingka-map-services-dev
+    genai_location: europe-west1
+    ollama_host: http://localhost:11434
+    uva_api_key: sk-
