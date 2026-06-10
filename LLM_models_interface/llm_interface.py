@@ -63,7 +63,7 @@ class JudgeConfig:
 def load_configs(path: str) -> list[JudgeConfig]:                                                                                                        
       config_path = Path(path).resolve()                                                                                                                   
       config_dir = config_path.parent                                                                                                                      
-      with open(config_path) as f:                                                                                                                         
+      with open(config_path, encoding="utf-8") as f:                                                                                                                         
           data = yaml.safe_load(f)                                                                 
       configs = []
       for item in data["experiments"]:
@@ -479,12 +479,61 @@ def _stratified_sample(data: list[dict], n: int, key: str, seed: int = 42) -> li
     return result
 
 
+# Traces whose content appears verbatim in data/prompts/examples.txt.
+# When shots > 0 the model sees these as in-context demonstrations, so they
+# must be excluded from the evaluation set to avoid inflated few-shot scores.
+#
+# Full dataset:  trace is a dict with a "key" field; (key, trace_id) is unique.
+# Human-labelled dataset: trace is a plain string; trace_id alone is unique.
+_FEW_SHOT_EXCLUDED_FULL: frozenset[tuple[str, int]] = frozenset({
+    # chalk math problem (No or Incorrect Verification example)
+    ("AG2_GSM_Plus_GPT4o", 15),
+    ("AG2_GSM_Plus_Claude", 100),
+    # ribbon / Monica Has problem (Ignored Other Agent's Input example)
+    ("AG2_GSM_Plus_GPT4o", 2),
+    ("AG2_GSM_Plus_Claude", 2),
+    ("AG2_GSM_Plus_Claude", 151),
+    # astropy / scikit-learn HyperAgent examples
+    ("HyperAgent_SWE-Bench-Lite_Claude", 4),   # astropy__astropy-12907
+    ("HyperAgent_SWE-Bench-Lite_Claude", 13),  # astropy__astropy-14365
+    ("HyperAgent_SWE-Bench-Lite_Claude", 9),   # scikit-learn__scikit-learn-25570
+    # budget tracker and palindrome detector examples
+    ("ChatDev_ProgramDev_GPT4o", 4),
+    ("MetaGPT_ProgramDev_GPT4o", 4),
+    ("MetaGPT_ProgramDev_GPT4o", 3),
+})
+
+_FEW_SHOT_EXCLUDED_HUMAN: frozenset[int] = frozenset({1, 2, 3, 4, 6, 8, 9, 10, 12})
+
+
 def load_dataset(config: JudgeConfig) -> list[dict]:
-    with open(config.dataset_path) as f:
+    with open(config.dataset_path, encoding="utf-8") as f:
         data = json.load(f)
-    # Filter Round 3 before slicing so slice_n=1 stays inside Round 3.
+    # Filter Round 3 before slicing so slice_n stays inside Round 3.
     if data and "round" in data[0]:
         data = [t for t in data if t.get("round") == "Round 3"]
+    # Exclude traces that appear verbatim in the few-shot examples file so that
+    # few-shot scores are not inflated by the model having already seen the answer.
+    if config.shots > 0:
+        before = len(data)
+        filtered = []
+        for t in data:
+            trace = t.get("trace")
+            if isinstance(trace, dict):
+                if (trace.get("key"), t.get("trace_id")) not in _FEW_SHOT_EXCLUDED_FULL:
+                    filtered.append(t)
+            else:
+                if t.get("trace_id") not in _FEW_SHOT_EXCLUDED_HUMAN:
+                    filtered.append(t)
+        data = filtered
+        excluded = before - len(data)
+        if excluded:
+            import warnings
+            warnings.warn(
+                f"load_dataset: excluded {excluded} traces that appear in examples.txt "
+                f"(shots={config.shots}). Remaining: {len(data)}.",
+                stacklevel=2,
+            )
     if config.slice_n is not None and config.slice_n < len(data):
         data = _stratified_sample(data, config.slice_n, key="mas_name", seed=42)
     return data
