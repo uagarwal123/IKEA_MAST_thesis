@@ -10,7 +10,7 @@ from llm_interface import LLMJudge, load_configs, FAILURE_MODES  # type: ignore
 import pandas as pd
 
 # ── configuration ────────────────────────────────────────────────────────────
-RUN_DIR    = Path("Bram/AG2/results/baseline_olympiad_gpt41_n50_20260609")
+RUN_DIR    = Path("Bram/AG2/results/stage_2_v1_olympiad_gpt41_n50_20260611")
 CONFIG_PATH = Path(__file__).parent / "config.yaml"
 # ─────────────────────────────────────────────────────────────────────────────
 

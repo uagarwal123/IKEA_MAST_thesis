@@ -3,4 +3,7 @@ __pycache__/
 *.pyo
 .env
 .venv
-.pkl
+# Experiment checkpoints (binary, not for version control)
+**/checkpoints/
+*.pkl
+Bram/AG2/results/*/code/

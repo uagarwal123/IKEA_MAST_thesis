@@ -138,14 +138,14 @@ def run(config_path: Path):
         t_start = time.time()
         result = None
         for attempt in range(3):
+            executor = ThreadPoolExecutor(max_workers=1)
+            future = executor.submit(
+                user_proxy.initiate_chat,
+                assistant,
+                message=mathchat_first_message + task,
+            )
             try:
-                with ThreadPoolExecutor(max_workers=1) as _exec:
-                    future = _exec.submit(
-                        user_proxy.initiate_chat,
-                        assistant,
-                        message=mathchat_first_message + task,
-                    )
-                    result = future.result(timeout=QUESTION_TIMEOUT)
+                result = future.result(timeout=QUESTION_TIMEOUT)
                 break
             except FuturesTimeoutError:
                 print(f"  Question {i} timed out after {QUESTION_TIMEOUT}s, skipping.")
@@ -156,6 +156,8 @@ def run(config_path: Path):
                     time.sleep(10)
                 else:
                     print("  Skipping question after 3 failed attempts.")
+            finally:
+                executor.shutdown(wait=False)
         if result is None:
             continue
         latency = round(time.time() - t_start, 3)

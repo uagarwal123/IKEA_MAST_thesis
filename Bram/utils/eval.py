@@ -17,6 +17,7 @@ def is_unanswerable_response(content: str) -> bool:
 
 def _clean(s: str) -> str:
     """Remove LaTeX spacing artifacts and normalize whitespace around commas."""
+    s = re.sub(r'\\quad\s*|\\qquad\s*|\\;\s*|\\!\s*|\\:\s*', '', s)  # LaTeX quad/spacing
     s = re.sub(r'\\ ', '', s)                    # \ space (LaTeX medium/thin space)
     s = re.sub(r'\\,', '', s)                    # \, (LaTeX thin space)
     s = re.sub(r'\s*,\s*', ',', s)               # spaces around commas
@@ -38,6 +39,7 @@ def _set_match(predicted: str, expected: str) -> bool:
         return False
 
     def norm(p):
+        p = _strip_assignment(p)
         v = _normalize(p)
         return v if v is not None else p.strip()
 
