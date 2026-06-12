@@ -1,0 +1,30 @@
+# Ollama (local models) experiment config.
+# Pre-configured for you to run on your own machine.
+# To use: 1) start Ollama, 2) `ollama pull <model>`, 3) set the model name below, 4) run the notebook top to bottom.
+# Note: small models (e.g. 3B) do NOT reliably follow the structured output format,
+#       so their predictions fail to parse and metrics collapse to zero. Larger models should do better.
+
+experiments:
+  - name: llama3.1-8b_zero_shot
+    model: llama3.1:8b          # <- change to whichever model you pulled (e.g. llama3.1:70b)
+    backend: ollama
+    temperature: 0.0
+    reasoning: false
+    shots: 0
+    slice_n: 30                 # same 30-trace stratified slice as the cloud runs (seed=42, fixed in code)
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    ollama_host: http://localhost:11434
+
+  - name: llama3.1-8b_few_shot
+    model: llama3.1:8b          # <- same model as above
+    backend: ollama
+    temperature: 0.0
+    reasoning: false
+    shots: 1
+    slice_n: 30
+    definitions_path: ../../../data/prompts/definitions.txt
+    examples_path: ../../../data/prompts/examples.txt
+    dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
+    ollama_host: http://localhost:11434
