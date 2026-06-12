@@ -110,3 +110,5 @@ pandas
 seaborn
 tiktoken
 huggingface_hub
+scikit-learn==1.9.0
+ollama==0.6.2

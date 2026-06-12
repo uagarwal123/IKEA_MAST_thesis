@@ -28,8 +28,8 @@ cp -r experiments/stage1_llm_judge/experiments_template \
 
 # Edit config.yaml
 
-# 7. Run the notebook
-jupyter notebook llm_judge_pipeline.ipynb
+# 7. Run the judge notebook FROM your experiment folder (not the repo root)
+jupyter notebook experiments/stage1_llm_judge/my_experiment/llm_judge_pipeline.ipynb
 ```
 ## Setup
 
@@ -96,7 +96,7 @@ Output is written as JSON next to each parser (e.g. `parsers/ag2_parser/ag2_outp
 
 1. Copy `experiments/stage1_llm_judge/experiments_template/` to a new folder, e.g. `experiment_2/`
 2. Edit `config.yaml`  define one or more experiments under the `experiments:` key. Each entry sets `model`, `backend`, `shots`, `slice_n`, etc.
-3. Open `llm_judge_pipeline.ipynb` and run top to bottom
+3. Open `llm_judge_pipeline.ipynb` **inside your experiment folder** (e.g. `experiments/stage1_llm_judge/my_experiment/`) and run top to bottom. Do not use the notebook at the repo root.
 
 The notebook runs all experiments in the config sequentially. Results are written to `saved_results/`:
 
@@ -108,3 +108,26 @@ The notebook runs all experiments in the config sequentially. Results are writte
 | `checkpoints/<name>.pkl` | Checkpoint after every trace, results are not lost if the run crashes |
 
 The template notebook contains a detailed explanation of each step, including input/output descriptions and config options.
+
+## Building the comparison table (baseline results)
+
+After running one or more experiments, build the final comparison table and figure:
+
+```bash
+jupyter notebook experiments/stage1_llm_judge/run_50_baseline/build_comparison_table.ipynb
+```
+
+This notebook collects `predictions.csv` across experiment folders, reconstructs ground truth from the dataset, and produces:
+
+| Output | What it contains |
+|---|---|
+| `comparison_table.csv` | One row per (model × shots) config; per-mode F1 for all 14 failure modes (long→wide), macro/micro F1, Cohen's kappa, 95% bootstrap CIs (resampled over traces) for macro F1 and kappa, total/mean cost (USD), mean latency per trace |
+| `comparison_figure.png` | Judge quality (macro F1) vs mean cost per trace, with bootstrap CI error bars |
+
+All cloud configs are run on the same 30-trace stratified slice (seed = 42) so rows are comparable.
+
+## Ollama (local models)
+
+An Ollama experiment is pre-configured in `experiments/stage1_llm_judge/run_30_ollama/` (config + price-table entries in place). To run local models, start Ollama, `ollama pull <model>`, set the model name in that folder's `config.yaml`, and run the notebook.
+
+**Note:** small local models (e.g. 3B) do not reliably follow the required structured output format, so their predictions fail to parse and metrics collapse to zero. This is a known limitation, not a bug — larger models are expected to perform better.
