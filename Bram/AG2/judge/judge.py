@@ -10,7 +10,7 @@ from llm_interface import LLMJudge, load_configs, FAILURE_MODES  # type: ignore
 import pandas as pd
 
 # ── configuration ────────────────────────────────────────────────────────────
-RUN_DIR    = Path("Bram/AG2/results/stage_2_v1_olympiad_gpt41_n50_20260611")
+RUN_DIR    = Path("Bram/AG2/results/stage_2_v2_olympiad_gpt41_n50_20260612")
 CONFIG_PATH = Path(__file__).parent / "config.yaml"
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -23,7 +23,7 @@ def main():
         parsed_traces = json.load(f)
     traces = list(zip(raw_traces, parsed_traces))
 
-    out_dir = RUN_DIR / "saved_results"
+    out_dir = RUN_DIR / "saved_results_1shot"
     os.makedirs(out_dir / "checkpoints", exist_ok=True)
 
     all_predictions = []
@@ -37,9 +37,19 @@ def main():
         judge = LLMJudge(cfg)
         checkpoint_path = out_dir / "checkpoints" / f"{cfg.name}.pkl"
 
-        results = []
+        if checkpoint_path.exists():
+            with open(checkpoint_path, "rb") as f:
+                results = pickle.load(f)
+            print(f"  Resuming from checkpoint: {len(results)}/{len(traces)} already done")
+        else:
+            results = []
+
+        completed_ids = {r.trace_id for r in results}
+
         for i, (raw, parsed) in enumerate(traces):
             trace_id   = parsed["metadata"]["trace_id"]
+            if trace_id in completed_ids:
+                continue
             trace_text = json.dumps(raw)
 
             if len(trace_text) + len(judge.examples) > 1_048_570:

@@ -1,11 +1,9 @@
-stage: stage_2_v2
 benchmark: olympiad
-n: 50
 max_auto_reply: 10
-
 model:
-  name: gpt-4.1
   base_url: https://llmproxy.uva.nl
+  name: gpt-4.1
   temperature: 0
-
+n: 50
 prompt: prompts/mathchat_intervention_2.txt
+stage: stage_2_v2

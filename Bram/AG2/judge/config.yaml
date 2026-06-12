@@ -1,5 +1,5 @@
 experiments:
-  - name: olympiad_gemini25flash_zero_shot
+  - name: olympiad_gemini25flash_few_shot
     model: gemini-2.5-flash
     backend: genai
     temperature: 0.0
