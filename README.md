@@ -16,8 +16,16 @@ source .venv/bin/activate
 # 3. Install dependencies
 pip install -r requirements.txt
 
-# 4. Download the MAD datasets
-# (see section below)
+# 4. Download the MAD datasets (not shipped in the repo — required before running anything)
+python -c "
+from huggingface_hub import hf_hub_download
+import os, shutil
+os.makedirs('data/MAST-Data', exist_ok=True)
+for fn in ['MAD_full_dataset.json', 'MAD_human_labelled_dataset.json']:
+    p = hf_hub_download(repo_id='mcemri/MAD', filename=fn, repo_type='dataset')
+    shutil.copy(os.path.realpath(p), os.path.join('data/MAST-Data', fn))
+print('done')
+"
 
 # 5. Authenticate for Vertex AI models
 gcloud auth application-default login
