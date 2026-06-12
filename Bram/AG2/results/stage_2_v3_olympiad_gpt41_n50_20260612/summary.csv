@@ -1,0 +1,26 @@
+trace_id,question_id,model,correct,predicted_answer,gold_answer,tokens_in,tokens_out,latency_s,has_code,cost_usd
+stage_2_v3_olympiad_gpt41_n50_20260612_0,1820,gpt-4.1,False,0,n^{2}+1,2804,956,12.86,True,0.013256
+stage_2_v3_olympiad_gpt41_n50_20260612_1,2962,gpt-4.1,True,0,0,8059,1045,13.817,True,0.024478
+stage_2_v3_olympiad_gpt41_n50_20260612_2,3026,gpt-4.1,False,800,400,2372,794,8.391,True,0.011096000000000002
+stage_2_v3_olympiad_gpt41_n50_20260612_3,3080,gpt-4.1,True,b = 20,20,4279,1201,11.686,True,0.018166
+stage_2_v3_olympiad_gpt41_n50_20260612_5,2460,gpt-4.1,True,"(1, 1006),\ (3, 331),\ (11, 31)","(1,1006),(3,331),(11,31)",1997,433,4.493,True,0.007457999999999999
+stage_2_v3_olympiad_gpt41_n50_20260612_6,2731,gpt-4.1,True,\frac{27}{2},\frac{27}{2},1867,278,4.26,True,0.005958
+stage_2_v3_olympiad_gpt41_n50_20260612_7,1883,gpt-4.1,False,5,\lceil n / 2\rceil+1,2329,607,9.567,True,0.009514000000000002
+stage_2_v3_olympiad_gpt41_n50_20260612_8,2796,gpt-4.1,False,\text{No integer solution found in the tested range.},146,18899,4057,97.672,True,0.070254
+stage_2_v3_olympiad_gpt41_n50_20260612_9,1882,gpt-4.1,True,n^2 - n + 1,n^{2}-n+1,2486,522,5.951,True,0.009148
+stage_2_v3_olympiad_gpt41_n50_20260612_10,3047,gpt-4.1,True,5,5,1862,259,3.876,True,0.005796000000000001
+stage_2_v3_olympiad_gpt41_n50_20260612_11,2466,gpt-4.1,True,2,2,1901,306,5.723,True,0.00625
+stage_2_v3_olympiad_gpt41_n50_20260612_12,2583,gpt-4.1,True,-\dfrac{8}{3},-\frac{8}{3},2232,637,8.843,True,0.00956
+stage_2_v3_olympiad_gpt41_n50_20260612_13,1747,gpt-4.1,False,\frac{1}{4},M=\frac{9}{32} \sqrt{2},11946,2648,42.789,True,0.045076000000000005
+stage_2_v3_olympiad_gpt41_n50_20260612_14,3041,gpt-4.1,False,\frac{8}{9},-\frac{32}{9},2338,756,10.089,True,0.010724
+stage_2_v3_olympiad_gpt41_n50_20260612_15,2486,gpt-4.1,True,"-\frac{3}{2},\;-1,\;0","0,-1,-\frac{3}{2}",6724,1287,17.216,True,0.023744
+stage_2_v3_olympiad_gpt41_n50_20260612_16,2606,gpt-4.1,True,979,979,2035,455,4.977,True,0.00771
+stage_2_v3_olympiad_gpt41_n50_20260612_17,2977,gpt-4.1,True,24,24,1820,264,3.851,True,0.005752
+stage_2_v3_olympiad_gpt41_n50_20260612_18,2653,gpt-4.1,True,25,25,2108,459,7.272,True,0.007888
+stage_2_v3_olympiad_gpt41_n50_20260612_19,3092,gpt-4.1,True,12,12,2049,482,4.826,True,0.007954
+stage_2_v3_olympiad_gpt41_n50_20260612_20,3077,gpt-4.1,True,102018,102018,1725,185,3.261,True,0.00493
+stage_2_v3_olympiad_gpt41_n50_20260612_21,2746,gpt-4.1,True,1/6084,\frac{1}{6084},1978,286,3.387,True,0.0062439999999999996
+stage_2_v3_olympiad_gpt41_n50_20260612_22,3001,gpt-4.1,True,5,5,2610,557,5.991,True,0.009676
+stage_2_v3_olympiad_gpt41_n50_20260612_23,2888,gpt-4.1,False,2\sqrt{14 - 3\sqrt{15}},2 \sqrt{10},2297,733,6.935,True,0.010458
+stage_2_v3_olympiad_gpt41_n50_20260612_24,2736,gpt-4.1,True,\dfrac{14}{5},\frac{14}{5},2406,785,8.168,True,0.011092000000000001
+stage_2_v3_olympiad_gpt41_n50_20260612_25,2328,gpt-4.1,True,-\frac{30}{17},-\frac{30}{17},2244,349,5.83,True,0.00728
