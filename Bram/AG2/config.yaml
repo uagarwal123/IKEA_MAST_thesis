@@ -8,4 +8,4 @@ model:
   base_url: https://llmproxy.uva.nl
   temperature: 0
 
-prompt: prompts/mathchat_intervention_3.txt
+prompt: prompts/interventions/mathchat_intervention_3.txt

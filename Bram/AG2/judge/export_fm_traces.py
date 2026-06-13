@@ -8,9 +8,13 @@ import json
 import pickle
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parents[1]))  # AG2/ — for paths.py
+import paths  # type: ignore
+
 # ── configuration ────────────────────────────────────────────────────────────
 FM_CODE      = "3.3"
-RESULTS_DIR  = Path(__file__).parent / "../results/baseline_olympiad_gpt41_n50_20260609/saved_results_1shot"
+RUN_ID       = "baseline_olympiad_gpt41_n50_20260609"
+RESULTS_DIR  = paths.run_dir(RUN_ID) / paths.JUDGE_SUBDIR
 OUTPUT_FILE  = None   # None → auto-named as fm<code>_traces.txt in the run dir
 # ─────────────────────────────────────────────────────────────────────────────
 

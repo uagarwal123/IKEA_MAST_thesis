@@ -1,3 +1,6 @@
+# Run to judge — name of a directory under AG2/results/ (see paths.run_dir).
+run_id: stage_2_v3_olympiad_gpt41_n50_20260613
+
 experiments:
   - name: olympiad_gemini25flash_few_shot
     model: gemini-2.5-flash

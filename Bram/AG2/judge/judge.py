@@ -4,17 +4,24 @@ import pickle
 import os
 from pathlib import Path
 
+import yaml
+
 sys.path.insert(0, str(Path(__file__).parents[3] / "LLM_models_interface"))
+sys.path.insert(0, str(Path(__file__).parents[1]))  # AG2/ — for paths.py
 from llm_interface import LLMJudge, load_configs, FAILURE_MODES  # type: ignore
+import paths  # type: ignore
 
 import pandas as pd
 
 # ── configuration ────────────────────────────────────────────────────────────
-RUN_DIR    = Path("Bram/AG2/results/stage_2_v3_olympiad_gpt41_n50_20260613")
+# Which run to judge is set by the top-level `run_id:` field in config.yaml.
 CONFIG_PATH = Path(__file__).parent / "config.yaml"
 # ─────────────────────────────────────────────────────────────────────────────
 
-def main(run_dir: Path = RUN_DIR, config_path: Path = CONFIG_PATH, out_dir: Path | None = None):
+def main(run_dir: Path | None = None, config_path: Path = CONFIG_PATH, out_dir: Path | None = None):
+    if run_dir is None:
+        run_id = yaml.safe_load(config_path.read_text(encoding="utf-8"))["run_id"]
+        run_dir = paths.run_dir(run_id)
     configs = load_configs(str(config_path))
 
     with open(run_dir / "raw_traces.json", encoding="utf-8") as f:
@@ -24,7 +31,7 @@ def main(run_dir: Path = RUN_DIR, config_path: Path = CONFIG_PATH, out_dir: Path
     traces = list(zip(raw_traces, parsed_traces))
 
     if out_dir is None:
-        out_dir = run_dir / "saved_results_1shot"
+        out_dir = run_dir / paths.JUDGE_SUBDIR
     os.makedirs(out_dir / "checkpoints", exist_ok=True)
 
     all_predictions = []

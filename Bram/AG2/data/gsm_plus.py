@@ -7,7 +7,8 @@ SEED = 42
 
 
 def create_sample(n: int) -> Path:
-    output = Path(__file__).parent / f"gsm_plus_n{n}_seed{SEED}.json"
+    output = Path(__file__).parent / "samples" / f"gsm_plus_n{n}_seed{SEED}.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
     if output.exists():
         print(f"Sample already exists: {output}")
         return output

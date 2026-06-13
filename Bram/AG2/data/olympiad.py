@@ -10,7 +10,8 @@ DATASET_CONFIG = "OE_TO_maths_en_COMP"
 
 
 def create_sample(n: int, seed: int = SEED) -> Path:
-    output = Path(__file__).parent / f"olympiad_n{n}_seed{seed}.json"
+    output = Path(__file__).parent / "samples" / f"olympiad_n{n}_seed{seed}.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
     if output.exists():
         print(f"Sample already exists: {output}")
         return output

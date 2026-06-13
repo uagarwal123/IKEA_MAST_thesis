@@ -13,8 +13,10 @@ import autogen
 from openai import APIConnectionError, APIStatusError
 
 
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent))
+AG2_DIR = Path(__file__).resolve().parent
+REPO_ROOT = AG2_DIR.parents[1]
+sys.path.insert(0, str(REPO_ROOT))  # parsers (shared framework)
+sys.path.insert(0, str(AG2_DIR))    # utils, data, paths (local to AG2)
 from parsers.ag2_parser.ag2_parser import _build_trace, _trace_to_dict
 from utils.eval import answers_match, is_unanswerable_response
 from data.gsm_plus import create_sample as create_gsm_plus_sample
