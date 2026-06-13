@@ -9,8 +9,8 @@ DATASET_NAME = "Hothan/OlympiadBench"
 DATASET_CONFIG = "OE_TO_maths_en_COMP"
 
 
-def create_sample(n: int) -> Path:
-    output = Path(__file__).parent / f"olympiad_n{n}_seed{SEED}.json"
+def create_sample(n: int, seed: int = SEED) -> Path:
+    output = Path(__file__).parent / f"olympiad_n{n}_seed{seed}.json"
     if output.exists():
         print(f"Sample already exists: {output}")
         return output
@@ -39,10 +39,10 @@ def create_sample(n: int) -> Path:
         k = per_group + (1 if i < remainder else 0)
         if k > 0:
             samples.append(
-                df[df["category"] == cat].sample(n=min(k, count), random_state=SEED)
+                df[df["category"] == cat].sample(n=min(k, count), random_state=seed)
             )
 
-    sample = pd.concat(samples).sample(frac=1, random_state=SEED).reset_index(drop=True)
+    sample = pd.concat(samples).sample(frac=1, random_state=seed).reset_index(drop=True)
 
     keep = [c for c in ["id", "question", "answer", "category", "solution", "source", "difficulty"] if c in sample.columns]
     records = json.loads(sample[keep].to_json(orient="records", force_ascii=False))

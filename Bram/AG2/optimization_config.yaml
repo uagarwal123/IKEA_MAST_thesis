@@ -1,0 +1,27 @@
+# Iterative prompt optimization loop (optimize_prompt.py)
+
+n_tasks_per_iteration: 20      # tasks sampled from OlympiadBench, same subset every iteration
+max_iterations: 5
+convergence_threshold: 0.02    # stop if |change in total FM prevalence| < 2pp vs previous iteration
+benchmark_subset_seed: 42      # seed for the task subset sample
+
+benchmark: olympiad
+max_auto_reply: 10
+initial_prompt: prompts/mathchat.txt
+output_dir: results/optimization_run
+judge_config: judge/config.yaml
+
+# MathChat assistant (same proxy setup as config.yaml)
+model:
+  name: gpt-4.1
+  base_url: https://llmproxy.uva.nl
+  temperature: 0
+
+# LLM call that generates the improved prompt each iteration
+optimizer:
+  model: gpt-4.1
+  temperature: 0.7
+  top_k_fms: 3               # dominant failure modes to show failing traces for
+  examples_per_fm: 3         # failing traces per failure mode
+  max_example_chars: 8000    # truncate each example trace to this many characters
+  history_max_entries: 4     # previous iterations shown to the optimizer (change summary + FM outcome)

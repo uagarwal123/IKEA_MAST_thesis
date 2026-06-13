@@ -69,7 +69,9 @@ def run(config_path: Path):
     }
 
     benchmark = cfg.get("benchmark", "gsm_plus")
-    if benchmark == "olympiad":
+    if cfg.get("data_path"):
+        data_path = Path(cfg["data_path"])
+    elif benchmark == "olympiad":
         data_path = create_olympiad_sample(cfg["n"])
     else:
         data_path = create_gsm_plus_sample(cfg["n"])
@@ -81,7 +83,10 @@ def run(config_path: Path):
     date_str = datetime.now().strftime("%Y%m%d")
     run_id = f"{stage}_{benchmark}_{model_slug}_n{len(examples)}_{date_str}"
 
-    run_dir = Path(__file__).parent / "results" / run_id
+    if cfg.get("output_dir"):
+        run_dir = (config_path.parent / cfg["output_dir"]).resolve()
+    else:
+        run_dir = Path(__file__).parent / "results" / run_id
     run_dir.mkdir(parents=True, exist_ok=True)
     code_base_dir = run_dir / "code"
 

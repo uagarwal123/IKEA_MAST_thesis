@@ -1,0 +1,2 @@
+name,model,total_cost_usd,mean_cost_usd,total_latency_s,mean_latency_s
+olympiad_gemini25flash_few_shot,gemini-2.5-flash,0.0,0.0,686.5935620000528,13.731871240001055

@@ -25,7 +25,7 @@ stage_2_v3_olympiad_gpt41_n50_20260612_23,2888,gpt-4.1,False,2\sqrt{14 - 3\sqrt{
 stage_2_v3_olympiad_gpt41_n50_20260612_24,2736,gpt-4.1,True,\dfrac{14}{5},\frac{14}{5},2406,785,8.168,True,0.011092000000000001
 stage_2_v3_olympiad_gpt41_n50_20260612_25,2328,gpt-4.1,True,-\frac{30}{17},-\frac{30}{17},2244,349,5.83,True,0.00728
 stage_2_v3_olympiad_gpt41_n50_20260612_4,2766,gpt-4.1,False,20,12,7189,1859,90.598,True,0.02925
-stage_2_v3_olympiad_gpt41_n50_20260612_27,2660,gpt-4.1,True,9\sqrt{3},9,2111,616,7.851,True,0.00915
+stage_2_v3_olympiad_gpt41_n50_20260612_27,2660,gpt-4.1,False,9\sqrt{3},9,2111,616,7.851,True,0.00915
 stage_2_v3_olympiad_gpt41_n50_20260612_28,2987,gpt-4.1,True,3 - \sqrt{2},3-\sqrt{2},4854,1386,14.481,True,0.020796000000000002
 stage_2_v3_olympiad_gpt41_n50_20260612_29,2502,gpt-4.1,True,"[-1, -\frac{1}{2}]","[-1,-\frac{1}{2}]",6419,1343,13.723,True,0.023582
 stage_2_v3_olympiad_gpt41_n50_20260612_30,2609,gpt-4.1,True,20\sqrt{7},20 \sqrt{7},1877,270,3.686,True,0.005914000000000001
@@ -47,3 +47,5 @@ stage_2_v3_olympiad_gpt41_n50_20260612_46,2441,gpt-4.1,True,100,100,1937,376,4.4
 stage_2_v3_olympiad_gpt41_n50_20260612_47,2625,gpt-4.1,False,3360,1680,4681,692,8.625,True,0.014898000000000002
 stage_2_v3_olympiad_gpt41_n50_20260612_48,2435,gpt-4.1,True,18.8^\circ,18.8^{\circ},1937,315,3.716,True,0.006394
 stage_2_v3_olympiad_gpt41_n50_20260612_49,2165,gpt-4.1,False,\text{no solutions},"(2,251,252)",2048,714,8.818,True,0.009808
+stage_2_v3_olympiad_gpt41_n50_20260612_26,2759,gpt-4.1,False,2019,-2019,2448,919,9.906,True,0.012248
+stage_2_v3_olympiad_gpt41_n50_20260612_34,2091,gpt-4.1,False,N(n) = \left\lfloor \frac{n}{2} \right\rfloor + 1,N(n)=\left\lfloor\frac{2 n}{3}\right\rfloor+1,4961,1507,110.691,True,0.021977999999999998

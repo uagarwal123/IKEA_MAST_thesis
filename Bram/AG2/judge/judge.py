@@ -10,20 +10,21 @@ from llm_interface import LLMJudge, load_configs, FAILURE_MODES  # type: ignore
 import pandas as pd
 
 # ── configuration ────────────────────────────────────────────────────────────
-RUN_DIR    = Path("Bram/AG2/results/stage_2_v2_olympiad_gpt41_n50_20260612")
+RUN_DIR    = Path("Bram/AG2/results/stage_2_v3_olympiad_gpt41_n50_20260612")
 CONFIG_PATH = Path(__file__).parent / "config.yaml"
 # ─────────────────────────────────────────────────────────────────────────────
 
-def main():
-    configs = load_configs(str(CONFIG_PATH))
+def main(run_dir: Path = RUN_DIR, config_path: Path = CONFIG_PATH, out_dir: Path | None = None):
+    configs = load_configs(str(config_path))
 
-    with open(RUN_DIR / "raw_traces.json") as f:
+    with open(run_dir / "raw_traces.json", encoding="utf-8") as f:
         raw_traces = json.load(f)
-    with open(RUN_DIR / "parsed_traces.json") as f:
+    with open(run_dir / "parsed_traces.json", encoding="utf-8") as f:
         parsed_traces = json.load(f)
     traces = list(zip(raw_traces, parsed_traces))
 
-    out_dir = RUN_DIR / "saved_results_1shot"
+    if out_dir is None:
+        out_dir = run_dir / "saved_results_1shot"
     os.makedirs(out_dir / "checkpoints", exist_ok=True)
 
     all_predictions = []
