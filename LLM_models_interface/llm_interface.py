@@ -414,6 +414,194 @@ def parse_14_modes(response: str):
     return result
 
 
+def build_localise_prompt(steps: list[dict], definitions: str, examples: str = '') -> str:
+    """
+    Build a judge prompt with explicitly numbered steps for localization.
+    
+    Args:
+        steps: List of step dicts with 'agent', 'content', 'kind', 'metadata'
+        definitions: Failure mode definitions text
+        examples: Few-shot examples
+        
+    Returns:
+        Prompt asking the model to identify step indices where each mode occurs
+    """
+    # Format steps with explicit numbering
+    steps_text = ""
+    for step in steps:
+        idx = step.get('metadata', {}).get('step_index', 0)
+        agent = step.get('agent', 'Unknown')
+        content = step.get('content', '')
+        steps_text += f"[Step {idx}] {agent}:\n{content}\n\n"
+    
+    prompt = (
+        "Below I will provide a multiagent system trace with explicitly numbered steps. "
+        "Analyze the trace for failure modes and inefficiencies.\n\n"
+        "For EACH failure mode, tell me:\n"
+        "1. Is it present in the trace? (yes/no)\n"
+        "2. If yes, which STEP INDEX(es) does it occur in? (e.g., 'steps 3, 5' or 'step 7' or 'global')\n\n"
+        "Some modes are GLOBAL properties (occur throughout or cannot be localized to a single step):\n"
+        "- 1.5 Unaware of Termination Conditions: global property\n"
+        "- 3.1 Premature Termination: global property\n"
+        "For global modes, answer 'global' instead of a step index.\n\n"
+        "For modes that occur in multiple steps, list all relevant steps separated by commas.\n\n"
+        "Here is the trace with numbered steps:\n"
+        f"{steps_text}\n"
+        "Now analyze and provide your answers in this format:\n"
+        "@@\n"
+        "1.1 Disobey Task Specification: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "1.2 Disobey Role Specification: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "1.3 Step Repetition: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "1.4 Loss of Conversation History: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "1.5 Unaware of Termination Conditions: <yes or no>; steps: <'global' or 'n/a'>\n"
+        "2.1 Conversation Reset: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "2.2 Fail to Ask for Clarification: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "2.3 Task Derailment: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "2.4 Information Withholding: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "2.5 Ignored Other Agent's Input: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "2.6 Action-Reasoning Mismatch: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "3.1 Premature Termination: <yes or no>; steps: <'global' or 'n/a'>\n"
+        "3.2 No or Incorrect Verification: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "3.3 Weak Verification: <yes or no>; steps: <step_index(s) or 'global' or 'n/a'>\n"
+        "@@\n\n"
+        "Here are the failure mode definitions:\n"
+        f"{definitions}\n\n"
+        "Here are some examples:\n"
+        f"{examples}"
+    )
+    return prompt
+
+
+def parse_14_modes_with_steps(response: str) -> dict[str, dict]:
+    """
+    Parse the LLM response to extract yes/no and step indices for each mode.
+    
+    Returns:
+        Dict mapping mode code to {'present': 0/1, 'steps': [list of step indices or 'global']}
+    """
+    result = {}
+    
+    try:
+        cleaned = response.strip()
+        if cleaned.startswith('@@'):
+            cleaned = cleaned[2:]
+        if cleaned.endswith('@@'):
+            cleaned = cleaned[:-2]
+        
+        for mode in FAILURE_MODES:
+            # Look for pattern: "1.1 <name>: yes; steps: 3, 5"
+            pattern = rf"{re.escape(mode)}\s+[^:]*:\s*(yes|no)\s*;?\s*steps?:\s*([^;\n]*)"
+            match = re.search(pattern, cleaned, re.IGNORECASE)
+            
+            if match:
+                present = 1 if match.group(1).lower() == 'yes' else 0
+                steps_str = match.group(2).strip().lower()
+                
+                # Parse step indices
+                if 'global' in steps_str:
+                    steps = ['global']
+                elif 'n/a' in steps_str or steps_str == 'no' or not steps_str:
+                    steps = []
+                else:
+                    # Parse comma-separated step indices like "3, 5" or "step 3, 5"
+                    steps = []
+                    for part in steps_str.split(','):
+                        part = part.strip()
+                        # Extract just the number
+                        nums = re.findall(r'\d+', part)
+                        if nums:
+                            steps.append(int(nums[0]))
+                
+                result[mode] = {'present': present, 'steps': steps}
+            else:
+                # Fallback: just look for yes/no
+                simple_pattern = rf"{re.escape(mode)}\s+[^:]*:\s*(yes|no)"
+                match = re.search(simple_pattern, cleaned, re.IGNORECASE)
+                present = 1 if (match and match.group(1).lower() == 'yes') else 0
+                result[mode] = {'present': present, 'steps': []}
+    
+    except Exception as e:
+        print(f"Error parsing localization response: {e}")
+        for mode in FAILURE_MODES:
+            result[mode] = {'present': 0, 'steps': []}
+    
+    return result
+
+
+def build_subordinate_localise_prompt(mode_code: str, mode_name: str, steps: list[dict], definitions: str, examples: str = '') -> str:
+    """
+    Build a localization prompt that assumes the mode IS PRESENT (subordinate to baseline).
+    
+    Only asks WHERE the mode occurs (step indices), not WHETHER it's present.
+    Used as Stage 2 of two-stage pipeline: baseline detects, subordinate localizes.
+    
+    Args:
+        mode_code: e.g., "1.1"
+        mode_name: e.g., "Disobey Task Specification"
+        steps: List of step dicts with 'agent', 'content', 'kind', 'metadata'
+        definitions: Full definitions text
+        examples: Few-shot examples
+        
+    Returns:
+        Prompt asking only for step indices where the known-present mode occurs
+    """
+    # Format steps with explicit numbering
+    steps_text = ""
+    for step in steps:
+        idx = step.get('metadata', {}).get('step_index', 0)
+        agent = step.get('agent', 'Unknown')
+        content = step.get('content', '')
+        steps_text += f"[Step {idx}] {agent}:\n{content}\n\n"
+    
+    # Global modes: 1.1, 1.5, 3.1 (should not be localized to steps)
+    global_modes = ['1.1', '1.5', '3.1']
+    
+    if mode_code in global_modes:
+        prompt = (
+            f"Below is a trace where failure mode **{mode_code} {mode_name}** is CONFIRMED PRESENT.\n\n"
+            f"This mode is a GLOBAL PROPERTY of the entire trace, not localized to individual steps. "
+            f"Answer: GLOBAL\n\n"
+            f"Trace:\n{steps_text}"
+        )
+    else:
+        prompt = (
+            f"Below is a trace where failure mode **{mode_code} {mode_name}** is CONFIRMED PRESENT.\n\n"
+            f"Your task: Identify the SPECIFIC STEP(S) where this mode occurs.\n\n"
+            f"Instructions:\n"
+            f"1. Do NOT decide if the mode is present (it is). Only locate where.\n"
+            f"2. Answer with step index(es): e.g., 'steps 3, 5' or 'step 7' or 'all steps' if throughout.\n"
+            f"3. If it is a property of the entire trace rather than specific steps, answer: GLOBAL\n\n"
+            f"Trace:\n{steps_text}\n\n"
+            f"Answer (step indices or GLOBAL):"
+        )
+    return prompt
+
+
+def parse_localized_steps(response: str) -> list | str:
+    """
+    Parse response from subordinate localizer that ONLY extracts step indices.
+    
+    Assumes the mode is present (no presence decision needed).
+    Returns:
+        Either a list of step integers, or the string 'global'
+    """
+    response_lower = response.lower().strip()
+    
+    # Check for global
+    if 'global' in response_lower:
+        return 'global'
+    
+    # Try to extract step numbers
+    steps = []
+    numbers = re.findall(r'\d+', response_lower)
+    if numbers:
+        steps = [int(n) for n in numbers]
+        return sorted(list(set(steps)))  # unique and sorted
+    
+    # If no steps found, return empty list
+    return []
+
+
 def _stratified_sample(data: list[dict], n: int, key: str, seed: int = 42) -> list[dict]:
     """Sample n items proportionally per mas_name, with a fixed seed."""
 
