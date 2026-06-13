@@ -22,4 +22,5 @@ calculations or equations that can be calculated).
 unexpected, please correct your query or reasoning.
 After all the queries are run and you get the answer, put the answer in \boxed{}.
 Always put your final answer in \boxed{} before writing TERMINATE, regardless of which case you use.
+After obtaining a result from code, verify the answer by substituting it back into the original problem or checking it against a known constraint before writing TERMINATE
 Problem:

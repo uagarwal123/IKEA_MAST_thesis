@@ -1,0 +1,9 @@
+benchmark: olympiad
+max_auto_reply: 10
+model:
+  base_url: https://llmproxy.uva.nl
+  name: gpt-4.1
+  temperature: 0
+n: 50
+prompt: prompts/mathchat.txt
+stage: baseline_v2

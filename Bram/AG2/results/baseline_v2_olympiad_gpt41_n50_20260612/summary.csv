@@ -1,0 +1,51 @@
+﻿trace_id,question_id,model,correct,predicted_answer,gold_answer,tokens_in,tokens_out,latency_s,has_code,cost_usd
+baseline_v2_olympiad_gpt41_n50_20260612_0,1820,gpt-4.1,False,0,n^{2}+1,2804,956,12.86,True,0.013256
+baseline_v2_olympiad_gpt41_n50_20260612_1,2962,gpt-4.1,True,0,0,8059,1045,13.817,True,0.024478
+baseline_v2_olympiad_gpt41_n50_20260612_2,3026,gpt-4.1,False,800,400,2372,794,8.391,True,0.011096000000000002
+baseline_v2_olympiad_gpt41_n50_20260612_3,3080,gpt-4.1,True,b = 20,20,4279,1201,11.686,True,0.018166
+baseline_v2_olympiad_gpt41_n50_20260612_5,2460,gpt-4.1,True,"(1, 1006),\ (3, 331),\ (11, 31)","(1,1006),(3,331),(11,31)",1997,433,4.493,True,0.007457999999999999
+baseline_v2_olympiad_gpt41_n50_20260612_6,2731,gpt-4.1,True,\frac{27}{2},\frac{27}{2},1867,278,4.26,True,0.005958
+baseline_v2_olympiad_gpt41_n50_20260612_7,1883,gpt-4.1,False,5,\lceil n / 2\rceil+1,2329,607,9.567,True,0.009514000000000002
+baseline_v2_olympiad_gpt41_n50_20260612_8,2796,gpt-4.1,False,\text{No integer solution found in the tested range.},146,18899,4057,97.672,True,0.070254
+baseline_v2_olympiad_gpt41_n50_20260612_9,1882,gpt-4.1,True,n^2 - n + 1,n^{2}-n+1,2486,522,5.951,True,0.009148
+baseline_v2_olympiad_gpt41_n50_20260612_10,3047,gpt-4.1,True,5,5,1862,259,3.876,True,0.005796000000000001
+baseline_v2_olympiad_gpt41_n50_20260612_11,2466,gpt-4.1,True,2,2,1901,306,5.723,True,0.00625
+baseline_v2_olympiad_gpt41_n50_20260612_12,2583,gpt-4.1,True,-\dfrac{8}{3},-\frac{8}{3},2232,637,8.843,True,0.00956
+baseline_v2_olympiad_gpt41_n50_20260612_13,1747,gpt-4.1,False,\frac{1}{4},M=\frac{9}{32} \sqrt{2},11946,2648,42.789,True,0.045076000000000005
+baseline_v2_olympiad_gpt41_n50_20260612_14,3041,gpt-4.1,False,\frac{8}{9},-\frac{32}{9},2338,756,10.089,True,0.010724
+baseline_v2_olympiad_gpt41_n50_20260612_15,2486,gpt-4.1,True,"-\frac{3}{2},\;-1,\;0","0,-1,-\frac{3}{2}",6724,1287,17.216,True,0.023744
+baseline_v2_olympiad_gpt41_n50_20260612_16,2606,gpt-4.1,True,979,979,2035,455,4.977,True,0.00771
+baseline_v2_olympiad_gpt41_n50_20260612_17,2977,gpt-4.1,True,24,24,1820,264,3.851,True,0.005752
+baseline_v2_olympiad_gpt41_n50_20260612_18,2653,gpt-4.1,True,25,25,2108,459,7.272,True,0.007888
+baseline_v2_olympiad_gpt41_n50_20260612_19,3092,gpt-4.1,True,12,12,2049,482,4.826,True,0.007954
+baseline_v2_olympiad_gpt41_n50_20260612_20,3077,gpt-4.1,True,102018,102018,1725,185,3.261,True,0.00493
+baseline_v2_olympiad_gpt41_n50_20260612_21,2746,gpt-4.1,True,1/6084,\frac{1}{6084},1978,286,3.387,True,0.0062439999999999996
+baseline_v2_olympiad_gpt41_n50_20260612_22,3001,gpt-4.1,True,5,5,2610,557,5.991,True,0.009676
+baseline_v2_olympiad_gpt41_n50_20260612_23,2888,gpt-4.1,False,2\sqrt{14 - 3\sqrt{15}},2 \sqrt{10},2297,733,6.935,True,0.010458
+baseline_v2_olympiad_gpt41_n50_20260612_24,2736,gpt-4.1,True,\dfrac{14}{5},\frac{14}{5},2406,785,8.168,True,0.011092000000000001
+baseline_v2_olympiad_gpt41_n50_20260612_25,2328,gpt-4.1,True,-\frac{30}{17},-\frac{30}{17},2244,349,5.83,True,0.00728
+baseline_v2_olympiad_gpt41_n50_20260612_4,2766,gpt-4.1,False,20,12,7189,1859,90.598,True,0.02925
+baseline_v2_olympiad_gpt41_n50_20260612_27,2660,gpt-4.1,False,9\sqrt{3},9,2111,616,7.851,True,0.00915
+baseline_v2_olympiad_gpt41_n50_20260612_28,2987,gpt-4.1,True,3 - \sqrt{2},3-\sqrt{2},4854,1386,14.481,True,0.020796000000000002
+baseline_v2_olympiad_gpt41_n50_20260612_29,2502,gpt-4.1,True,"[-1, -\frac{1}{2}]","[-1,-\frac{1}{2}]",6419,1343,13.723,True,0.023582
+baseline_v2_olympiad_gpt41_n50_20260612_30,2609,gpt-4.1,True,20\sqrt{7},20 \sqrt{7},1877,270,3.686,True,0.005914000000000001
+baseline_v2_olympiad_gpt41_n50_20260612_31,2902,gpt-4.1,True,9,9,2439,699,7.175,True,0.01047
+baseline_v2_olympiad_gpt41_n50_20260612_32,2948,gpt-4.1,True,\frac{222}{13},\frac{222}{13},3220,1468,16.409,True,0.018184000000000002
+baseline_v2_olympiad_gpt41_n50_20260612_33,2827,gpt-4.1,True,47,47,1987,397,4.202,True,0.00715
+baseline_v2_olympiad_gpt41_n50_20260612_35,2359,gpt-4.1,True,\frac{17}{4},4.25,4090,654,8.612,True,0.013412
+baseline_v2_olympiad_gpt41_n50_20260612_36,2845,gpt-4.1,True,28,28,2035,428,5.041,True,0.007494
+baseline_v2_olympiad_gpt41_n50_20260612_37,2578,gpt-4.1,True,\frac{2}{3},\frac{2}{3},1939,290,3.821,True,0.006198
+baseline_v2_olympiad_gpt41_n50_20260612_38,2534,gpt-4.1,True,\frac{1}{90},\frac{1}{90},1864,273,3.995,True,0.005912000000000001
+baseline_v2_olympiad_gpt41_n50_20260612_39,2763,gpt-4.1,True,34,34,3399,491,6.037,True,0.010726
+baseline_v2_olympiad_gpt41_n50_20260612_40,2717,gpt-4.1,False,104857600000000000000000000,140,2433,452,6.133,True,0.008482
+baseline_v2_olympiad_gpt41_n50_20260612_41,2312,gpt-4.1,True,\frac{11}{36},\frac{11}{36},1841,248,3.582,True,0.005665999999999999
+baseline_v2_olympiad_gpt41_n50_20260612_42,2377,gpt-4.1,True,\dfrac{27}{64},\frac{27}{64},1966,357,5.758,True,0.006788000000000001
+baseline_v2_olympiad_gpt41_n50_20260612_43,1709,gpt-4.1,True,"a = 1, 3, 5","1,3,5",11688,1979,19.587,True,0.039208
+baseline_v2_olympiad_gpt41_n50_20260612_44,2185,gpt-4.1,False,16m - 4,6m,2182,685,8.469,True,0.009844
+baseline_v2_olympiad_gpt41_n50_20260612_45,2739,gpt-4.1,True,2^{1/3} \left( (45 - 17\sqrt{7})^{4/3} + (45 + 17\sqrt{7})^{4/3} \right),508,3647,534,8.447,True,0.011566
+baseline_v2_olympiad_gpt41_n50_20260612_46,2441,gpt-4.1,True,100,100,1937,376,4.495,True,0.006881999999999999
+baseline_v2_olympiad_gpt41_n50_20260612_47,2625,gpt-4.1,False,3360,1680,4681,692,8.625,True,0.014898000000000002
+baseline_v2_olympiad_gpt41_n50_20260612_48,2435,gpt-4.1,True,18.8^\circ,18.8^{\circ},1937,315,3.716,True,0.006394
+baseline_v2_olympiad_gpt41_n50_20260612_49,2165,gpt-4.1,False,\text{no solutions},"(2,251,252)",2048,714,8.818,True,0.009808
+baseline_v2_olympiad_gpt41_n50_20260612_26,2759,gpt-4.1,False,2019,-2019,2448,919,9.906,True,0.012248
+baseline_v2_olympiad_gpt41_n50_20260612_34,2091,gpt-4.1,False,N(n) = \left\lfloor \frac{n}{2} \right\rfloor + 1,N(n)=\left\lfloor\frac{2 n}{3}\right\rfloor+1,4961,1507,110.691,True,0.021977999999999998

@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "steps": [
       {
@@ -39,8 +39,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_0",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_0",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_0",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_0",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -164,8 +164,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_1",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_1",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_1",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_1",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -235,8 +235,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_2",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_2",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_2",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_2",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -324,8 +324,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_3",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_3",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_3",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_3",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -395,8 +395,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_5",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_5",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_5",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_5",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -466,8 +466,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_6",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_6",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_6",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_6",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -537,8 +537,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_7",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_7",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_7",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_7",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -680,8 +680,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_8",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_8",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_8",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_8",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -751,8 +751,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_9",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_9",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_9",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_9",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -822,8 +822,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_10",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_10",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_10",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_10",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -893,8 +893,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_11",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_11",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_11",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_11",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -964,8 +964,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_12",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_12",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_12",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_12",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1089,8 +1089,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_13",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_13",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_13",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_13",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1160,8 +1160,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_14",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_14",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_14",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_14",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1267,8 +1267,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_15",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_15",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_15",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_15",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1338,8 +1338,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_16",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_16",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_16",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_16",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1409,8 +1409,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_17",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_17",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_17",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_17",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1480,8 +1480,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_18",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_18",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_18",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_18",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1551,8 +1551,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_19",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_19",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_19",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_19",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1622,8 +1622,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_20",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_20",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_20",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_20",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1693,8 +1693,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_21",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_21",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_21",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_21",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1764,8 +1764,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_22",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_22",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_22",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_22",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1835,8 +1835,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_23",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_23",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_23",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_23",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1906,8 +1906,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_24",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_24",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_24",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_24",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -1977,8 +1977,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_25",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_25",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_25",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_25",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2084,8 +2084,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_4",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_4",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_4",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_4",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2155,8 +2155,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_27",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_27",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_27",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_27",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2244,8 +2244,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_28",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_28",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_28",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_28",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2351,8 +2351,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_29",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_29",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_29",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_29",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2422,8 +2422,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_30",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_30",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_30",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_30",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2493,8 +2493,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_31",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_31",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_31",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_31",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2564,8 +2564,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_32",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_32",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_32",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_32",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2635,8 +2635,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_33",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_33",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_33",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_33",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2724,8 +2724,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_35",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_35",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_35",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_35",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2795,8 +2795,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_36",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_36",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_36",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_36",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2866,8 +2866,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_37",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_37",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_37",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_37",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -2937,8 +2937,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_38",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_38",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_38",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_38",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3026,8 +3026,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_39",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_39",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_39",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_39",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3097,8 +3097,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_40",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_40",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_40",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_40",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3168,8 +3168,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_41",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_41",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_41",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_41",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3239,8 +3239,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_42",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_42",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_42",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_42",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3382,8 +3382,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_43",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_43",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_43",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_43",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3453,8 +3453,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_44",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_44",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_44",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_44",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3542,8 +3542,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_45",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_45",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_45",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_45",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3613,8 +3613,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_46",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_46",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_46",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_46",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3684,8 +3684,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_47",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_47",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_47",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_47",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3755,8 +3755,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_48",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_48",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_48",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_48",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3826,8 +3826,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_49",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_49",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_49",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_49",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3897,8 +3897,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_26",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_26",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_26",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_26",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
@@ -3986,8 +3986,8 @@
       }
     ],
     "metadata": {
-      "trace_id": "stage_2_v3_olympiad_gpt41_n50_20260612_34",
-      "mad_trace_key": "AG2_live_stage_2_v3_olympiad_gpt41_n50_20260612_34",
+      "trace_id": "baseline_v2_olympiad_gpt41_n50_20260612_34",
+      "mad_trace_key": "AG2_live_baseline_v2_olympiad_gpt41_n50_20260612_34",
       "mas_name": "AG2",
       "llm_name": "gpt-4.1",
       "benchmark_name": "OlympiadBench",
