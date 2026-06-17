@@ -3,15 +3,16 @@ Generate case study output files for all three Stage 2 interventions.
 
 Output structure:
   case_studies/
-    fm26_intervention/   (v1 run – FM-2.6)
-    fm11_intervention/   (v2 run – FM-1.1)
-    fm33_intervention/   (v3 run – FM-3.3)
+    fm26_intervention/   (v1 run - FM-2.6)
+    fm11_intervention/   (v2 run - FM-1.1)
+    fm33_intervention/   (v3 run - FM-3.3)
 
 Each folder:
   improved.txt                    baseline wrong → intervention correct
   degraded.txt                    baseline correct → intervention wrong
   fm_reduced_accuracy_unchanged.txt  target FM reduced but both wrong
   fm_increased.txt                target FM increased vs baseline
+  fm_decreased.txt                target FM decreased vs baseline
 """
 
 import json
@@ -237,6 +238,7 @@ def main() -> None:
         degraded: list[str] = []
         fm_reduced_acc_unchanged: list[str] = []
         fm_increased: list[str] = []
+        fm_decreased: list[str] = []
 
         for qid in shared_qids:
             base_trace = base_by_qid[qid]
@@ -275,6 +277,8 @@ def main() -> None:
                 fm_reduced_acc_unchanged.append(block)
             if base_fm == 0 and int_fm == 1:
                 fm_increased.append(block)
+            if base_fm == 1 and int_fm == 0:
+                fm_decreased.append(block)
 
         write_bucket(
             out_dir / "improved.txt", improved, label,
@@ -291,6 +295,10 @@ def main() -> None:
         write_bucket(
             out_dir / "fm_increased.txt", fm_increased, label,
             label, f"FM-{target_fm} increased vs baseline",
+        )
+        write_bucket(
+            out_dir / "fm_decreased.txt", fm_decreased, label,
+            label, f"FM-{target_fm} decreased vs baseline",
         )
 
     print(f"\nDone. Output in: {OUT_ROOT}")
