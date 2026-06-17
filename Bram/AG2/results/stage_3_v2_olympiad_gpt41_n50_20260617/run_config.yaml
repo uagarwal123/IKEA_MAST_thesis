@@ -1,0 +1,15 @@
+benchmark: olympiad
+judge_model:
+  location: europe-west1
+  name: gemini-2.5-flash
+  project: ingka-map-services-dev
+  temperature: 0
+max_auto_reply: 10
+max_judge_retries: 3
+model:
+  base_url: https://llmproxy.uva.nl
+  name: gpt-4.1
+  temperature: 0
+n: 50
+prompt: ../prompts/mathchat.txt
+stage: stage_3_v2

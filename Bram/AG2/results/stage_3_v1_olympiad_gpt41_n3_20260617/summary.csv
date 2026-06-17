@@ -1,0 +1,4 @@
+trace_id,question_id,model,correct,predicted_answer,gold_answer,tokens_in,tokens_out,latency_s,has_code,cost_usd,n_code_judge,n_terminate_judge
+stage_3_v1_olympiad_gpt41_n3_20260617_0,2328,gpt-4.1,True,-\frac{30}{17},-\frac{30}{17},,,13.67,True,0,2,0
+stage_3_v1_olympiad_gpt41_n3_20260617_1,1820,gpt-4.1,False,0,n^{2}+1,,,20.976,True,0,1,1
+stage_3_v1_olympiad_gpt41_n3_20260617_2,2731,gpt-4.1,True,\dfrac{27}{2},\frac{27}{2},,,8.426,True,0,1,1

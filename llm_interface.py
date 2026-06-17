@@ -59,6 +59,7 @@ class JudgeConfig:
     genai_location: str = "europe-west1"
     ollama_host: str    = "http://localhost:11434"
     uva_base_url: str   = "https://llmproxy.uva.nl"
+    context_note: str   = ""  # injected before the trace; leave empty for standard runs
 
 def load_configs(path: str) -> list[JudgeConfig]:                                                                                                        
       config_path = Path(path).resolve()                                                                                                                   
@@ -96,7 +97,7 @@ class JudgeResponse:
         ) / 1_000_000
 
 
-def build_judge_prompt(trace: str, definitions: str, examples: str=''):
+def build_judge_prompt(trace: str, definitions: str, examples: str = '', context_note: str = ''):
     prompt = (
     "Below I will provide a multiagent system trace. provide me an analysis of the failure modes and inefficiencies as I will say below. \n"
     "In the traces, analyze the system behaviour."
@@ -146,6 +147,7 @@ def build_judge_prompt(trace: str, definitions: str, examples: str=''):
     "3.2 yes \n"
     "3.3 no \n"   
     "Here is the trace: \n"
+    f"{'**Note:** ' + context_note + '\n' if context_note else ''}"
     f"{trace}"
     "Also, here are the explanations (definitions) of the failure modes and inefficiencies: \n"
     f"{definitions} \n"
@@ -544,7 +546,7 @@ class LLMJudge:
 
     def judge_trace(self, trace_id: str, trace_text: str) -> JudgeResponse:
         examples = self.examples if self.config.shots > 0 else ""
-        prompt = build_judge_prompt(trace_text, self.definitions, examples)
+        prompt = build_judge_prompt(trace_text, self.definitions, examples, self.config.context_note)
         response = self._dispatch(prompt, trace_id)
         response.annotations = parse_14_modes(response.raw_text)
         return response

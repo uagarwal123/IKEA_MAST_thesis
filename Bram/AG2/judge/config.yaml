@@ -1,5 +1,5 @@
 # Run to judge — name of a directory under AG2/results/ (see paths.run_dir).
-run_id: stage_2_v3_olympiad_gpt41_n50_20260613
+run_id: stage_3_v2_olympiad_gpt41_n50_20260617
 
 experiments:
   - name: olympiad_gemini25flash_few_shot
@@ -12,6 +12,7 @@ experiments:
     dataset_path:
     definitions_path: ../../../data/prompts/definitions.txt
     examples_path: ../../../data/prompts/examples.txt
+    context_note:
     genai_project: ingka-map-services-dev
     genai_location: europe-west1
     ollama_host: http://localhost:11434
