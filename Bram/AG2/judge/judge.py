@@ -31,7 +31,9 @@ def main(run_dir: Path | None = None, config_path: Path = CONFIG_PATH, out_dir: 
     traces = list(zip(raw_traces, parsed_traces))
 
     if out_dir is None:
-        out_dir = run_dir / paths.JUDGE_SUBDIR
+        has_context = any(getattr(cfg, "context_note", "") for cfg in configs)
+        subdir = "judge_results_with_context" if has_context else paths.JUDGE_SUBDIR
+        out_dir = run_dir / subdir
     os.makedirs(out_dir / "checkpoints", exist_ok=True)
 
     all_predictions = []
