@@ -7,8 +7,8 @@ experiments:
     reasoning: false
     shots: 0
     slice_n: 100
-    definitions_path: ../../../data/prompts/definitions.txt
-    examples_path: ../../../data/prompts/examples.txt
+    definitions_path: ../../../prompts/definitions.txt
+    examples_path: ../../../prompts/examples.txt
     dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
     genai_project: ingka-map-services-dev
     genai_location: europe-west1
@@ -20,8 +20,8 @@ experiments:
     reasoning: false
     shots: 1
     slice_n: 100
-    definitions_path: ../../../data/prompts/definitions.txt
-    examples_path: ../../../data/prompts/examples.txt
+    definitions_path: ../../../prompts/definitions.txt
+    examples_path: ../../../prompts/examples.txt
     dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
     genai_project: ingka-map-services-dev
     genai_location: europe-west1
@@ -34,8 +34,8 @@ experiments:
     reasoning: false
     shots: 0
     slice_n: 100
-    definitions_path: ../../../data/prompts/definitions.txt
-    examples_path: ../../../data/prompts/examples.txt
+    definitions_path: ../../../prompts/definitions.txt
+    examples_path: ../../../prompts/examples.txt
     dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
     genai_project: ingka-map-services-dev
     genai_location: europe-west1
@@ -47,8 +47,8 @@ experiments:
     reasoning: false
     shots: 1
     slice_n: 100
-    definitions_path: ../../../data/prompts/definitions.txt
-    examples_path: ../../../data/prompts/examples.txt
+    definitions_path: ../../../prompts/definitions.txt
+    examples_path: ../../../prompts/examples.txt
     dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
     genai_project: ingka-map-services-dev
     genai_location: europe-west1
@@ -61,8 +61,8 @@ experiments:
     reasoning: false
     shots: 0
     slice_n: 100
-    definitions_path: ../../../data/prompts/definitions.txt
-    examples_path: ../../../data/prompts/examples.txt
+    definitions_path: ../../../prompts/definitions.txt
+    examples_path: ../../../prompts/examples.txt
     dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
     genai_project: ingka-map-services-dev
     genai_location: europe-west1
@@ -74,8 +74,8 @@ experiments:
     reasoning: false
     shots: 1
     slice_n: 100
-    definitions_path: ../../../data/prompts/definitions.txt
-    examples_path: ../../../data/prompts/examples.txt
+    definitions_path: ../../../prompts/definitions.txt
+    examples_path: ../../../prompts/examples.txt
     dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
     genai_project: ingka-map-services-dev
     genai_location: europe-west1
@@ -88,8 +88,8 @@ experiments:
     reasoning: false
     shots: 0
     slice_n: 100
-    definitions_path: ../../../data/prompts/definitions.txt
-    examples_path: ../../../data/prompts/examples.txt
+    definitions_path: ../../../prompts/definitions.txt
+    examples_path: ../../../prompts/examples.txt
     dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
     ollama_host: http://localhost:11434
 
@@ -100,8 +100,8 @@ experiments:
     reasoning: false
     shots: 1
     slice_n: 100
-    definitions_path: ../../../data/prompts/definitions.txt
-    examples_path: ../../../data/prompts/examples.txt
+    definitions_path: ../../../prompts/definitions.txt
+    examples_path: ../../../prompts/examples.txt
     dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
     ollama_host: http://localhost:11434
 
@@ -113,8 +113,8 @@ experiments:
     reasoning: false
     shots: 0
     slice_n: 100
-    definitions_path: ../../../data/prompts/definitions.txt
-    examples_path: ../../../data/prompts/examples.txt
+    definitions_path: ../../../prompts/definitions.txt
+    examples_path: ../../../prompts/examples.txt
     dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
     ollama_host: http://localhost:11434
 
@@ -125,7 +125,7 @@ experiments:
     reasoning: false
     shots: 1
     slice_n: 100
-    definitions_path: ../../../data/prompts/definitions.txt
-    examples_path: ../../../data/prompts/examples.txt
+    definitions_path: ../../../prompts/definitions.txt
+    examples_path: ../../../prompts/examples.txt
     dataset_path: ../../../data/MAST-Data/MAD_full_dataset.json
     ollama_host: http://localhost:11434

@@ -26,7 +26,7 @@ import os
 from dotenv import load_dotenv
 
 # Load .env from repo root so notebooks pick up UVA_API_KEY without restarting.
-load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=False)
+load_dotenv(Path(__file__).resolve().parent / ".env", override=False)
 
 # Model prices per 1M tokens: (price_in, price_out)
 PRICES: dict[str, tuple[float, float]] = {
@@ -52,8 +52,8 @@ class JudgeConfig:
     shots: int = 0
     slice_n: int | None = None
     system_prompt: str = ""
-    definitions_path: str = "../../data/prompts/definitions.txt"
-    examples_path: str  = "../../data/prompts/examples.txt"
+    definitions_path: str = "../../prompts/definitions.txt"
+    examples_path: str  = "../../prompts/examples.txt"
     dataset_path: str   = ""
     genai_project: str  = "ingka-map-services-dev"
     genai_location: str = "europe-west1"
