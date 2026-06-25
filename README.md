@@ -26,12 +26,14 @@ Claude and Gemini models hosted on Vertex AI.
   parses the response into binary verdicts for all 14 failure modes, with token cost and
   latency.
 
-- **`experiments/stage1_llm_judge/`** — the main benchmarking notebook. Runs one or more
-  judge configurations (defined in `config.yaml`) over the MAD trace dataset and evaluates
-  predictions against the annotations, reporting accuracy, precision, recall, F1, and
-  Cohen's kappa per failure mode, with bootstrapped confidence intervals. Outputs are saved
-  to `saved_results/` (predictions, per-mode metrics, summary), with checkpointing so
-  interrupted runs resume.
+- **`experiments/stage1_llm_judge/`** — the experiment, run as two notebooks in order:
+  - **(1) judge run** — runs the judge configurations defined in `config.yaml` over the
+    MAD trace dataset, evaluates predictions against the annotations, and saves per-trace
+    predictions, per-mode metrics, and a summary to `saved_results/` (with checkpointing so
+    interrupted runs resume).
+  - **(2) analysis** — reads those saved CSVs and builds the cross-model comparison table
+    (per-mode F1, macro/micro F1, kappa with bootstrapped CIs, cost, latency) and a
+    quality-vs-cost figure comparing the judge configurations.
 
 - **`prompts/`** — the failure-mode definitions and few-shot examples fed to the judge.
 
