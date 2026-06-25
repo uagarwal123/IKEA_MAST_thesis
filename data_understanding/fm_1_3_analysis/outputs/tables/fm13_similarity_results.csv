@@ -1,0 +1,9 @@
+method,variant,threshold,accuracy,precision,f1,kappa
+Jaccard,adjacent,0.1452,0.454,0.374,0.499,0.028
+Jaccard,all-pairs,0.1455,0.381,0.366,0.53,0.007
+Bigram,adjacent,0.043,0.431,0.371,0.508,0.019
+Bigram,all-pairs,0.0427,0.379,0.366,0.53,0.006
+TF-IDF,adjacent,0.2419,0.4,0.37,0.529,0.019
+TF-IDF,all-pairs,0.3964,0.378,0.368,0.537,0.014
+Sentence-BERT,adjacent,0.3549,0.4,0.367,0.521,0.01
+Sentence-BERT,all-pairs,0.3558,0.378,0.366,0.531,0.007

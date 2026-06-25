@@ -1,0 +1,8 @@
+framework,FM absent,FM present,total,fm_present_pct
+AG2,100,497,597,83.2
+MetaGPT,58,172,230,74.8
+Magentic,43,152,195,77.9
+ChatDev,37,93,130,71.5
+AppWorld,16,14,30,46.7
+HyperAgent,16,14,30,46.7
+OpenManus,16,14,30,46.7
