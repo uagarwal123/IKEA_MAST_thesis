@@ -479,12 +479,8 @@ def _stratified_sample(data: list[dict], n: int, key: str, seed: int = 42) -> li
     return result
 
 
-# Traces whose content appears verbatim in data/prompts/examples.txt.
-# When shots > 0 the model sees these as in-context demonstrations, so they
-# must be excluded from the evaluation set to avoid inflated few-shot scores.
-#
-# Full dataset:  trace is a dict with a "key" field; (key, trace_id) is unique.
-# Human-labelled dataset: trace is a plain string; trace_id alone is unique.
+# Fix few shot leakage
+
 _FEW_SHOT_EXCLUDED_FULL: frozenset[tuple[str, int]] = frozenset({
     # chalk math problem (No or Incorrect Verification example)
     ("AG2_GSM_Plus_GPT4o", 15),
