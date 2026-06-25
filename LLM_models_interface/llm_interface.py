@@ -1,7 +1,7 @@
 """
 LLM interface for the MAST failure-mode judge.
 
-Wraps Anthropic (via Vertex AI), Gemini (via Vertex AI), and Ollama behind a single call: 
+Wraps Anthropic (via Vertex AI), Gemini (via Vertex AI), Uva AI Chat and Ollama behind a single call: 
 llm_interface.judge(trace, config) -> JudgeResponse.
 """
 

@@ -70,6 +70,20 @@ for fn in ["MAD_full_dataset.json", "MAD_human_labelled_dataset.json"]:
 | `anthropic` | `gcloud auth application-default login`  Claude is served via Vertex AI |
 | `genai` | `gcloud auth application-default login`  Gemini via Vertex AI |
 | `ollama` | Ollama running at `http://localhost:11434` |
+| `uva` | UvA AI Chat API key — see below |
+
+### UvA AI Chat (`uva` backend)
+
+The `uva` backend routes requests through the [UvA AI Chat LiteLLM proxy](https://llmproxy.uva.nl) using an OpenAI-compatible API. To use it:
+
+1. Obtain your API key from the UvA AI Chat platform.
+2. Create a `.env` file in the **repo root**:
+
+```
+UVA_API_KEY=your_key_here
+```
+
+3. Set `backend: uva` and `model: <model-name>` in your `config.yaml`.
 
 
 ## Data understanding
