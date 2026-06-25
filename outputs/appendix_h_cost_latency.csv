@@ -1,0 +1,4 @@
+Stage,N,Mean input tokens,Mean output tokens,Mean total tokens,Est. cost per run (USD),Total est. cost (USD),Mean latency (s),Notes
+1,49,4902.7,931.7,5834.4,0.000647,0.0317,18.69,token counts from API response
+2,49,4393.1,991.1,5384.1,0.000627,0.0307,10.95,token counts from API response
+3,47,11406.3,1605.9,13012.2,0.001337,0.0629,37.35,token counts estimated via tiktoken from raw traces
