@@ -3,6 +3,4 @@ __pycache__/
 *.pyo
 .env
 .venv
-# Experiment checkpoints (binary, not for version control)
-**/checkpoints/
-*.pkl
+.pkl
