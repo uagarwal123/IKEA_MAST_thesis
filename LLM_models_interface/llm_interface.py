@@ -21,6 +21,12 @@ import google.auth.transport.requests
 from google.cloud import secretmanager
 from anthropic import AnthropicVertex
 import ollama
+from openai import OpenAI
+import os
+from dotenv import load_dotenv
+
+# Load .env from repo root so notebooks pick up UVA_API_KEY without restarting.
+load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=False)
 
 # Model prices per 1M tokens: (price_in, price_out)
 PRICES: dict[str, tuple[float, float]] = {
@@ -31,15 +37,7 @@ PRICES: dict[str, tuple[float, float]] = {
     "gpt-4.1":                   ( 2.00,  8.00),
     "o3-mini":                   ( 1.10,  4.40),
     "gpt-5":                     ( 1.25, 10.00),
-    "grok-4.3":                  ( 1.25,  2.50),
     "gemini-2.5-flash":          ( 0.30, 2.50),
-    "llama3.1:8b":               ( 0.0, 0.0),  
-    "qwen2.5:7b":                ( 0.0, 0.0),     
-    "llama3.2:3b":               ( 0.0, 0.0),
-    "llama3.1:8b":               ( 0.0, 0.0),
-    "llama3.1:70b":              ( 0.0, 0.0),
-    "llama3.2:3b":               ( 0.0, 0.0),
-    "qwen2.5:7b":                ( 0.0, 0.0),
 }
 
 FAILURE_MODES = ["1.1","1.2","1.3","1.4","1.5","2.1","2.2","2.3","2.4","2.5","2.6","3.1","3.2","3.3"]
@@ -60,11 +58,12 @@ class JudgeConfig:
     genai_project: str  = "ingka-map-services-dev"
     genai_location: str = "europe-west1"
     ollama_host: str    = "http://localhost:11434"
+    uva_base_url: str   = "https://llmproxy.uva.nl"
 
 def load_configs(path: str) -> list[JudgeConfig]:                                                                                                        
       config_path = Path(path).resolve()                                                                                                                   
       config_dir = config_path.parent                                                                                                                      
-      with open(config_path) as f:                                                                                                                         
+      with open(config_path, encoding="utf-8") as f:                                                                                                                         
           data = yaml.safe_load(f)                                                                 
       configs = []
       for item in data["experiments"]:
@@ -341,6 +340,41 @@ def _call_ollama(model: str, prompt: str, temperature: float, trace_id: str, hos
         latency_s=latency
     )
 
+def _call_uva(model: str, prompt: str, temperature: float, trace_id: str, base_url: str, system_prompt: str = "") -> JudgeResponse:
+    """Call a model via the UvA AI Chat LiteLLM proxy (OpenAI-compatible)."""
+
+    api_key = os.environ["UVA_API_KEY"]
+    client = OpenAI(
+        api_key=api_key,
+        base_url=base_url.rstrip("/") + "/v1",
+        default_query={"api-version": "2024-12-01-preview"},
+        max_retries=6,
+    )
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": prompt})
+
+    t0 = time.perf_counter()
+    response = client.chat.completions.create(
+        model=model,
+        messages=messages,
+        temperature=temperature,
+    )
+    latency = time.perf_counter() - t0
+
+    raw = response.choices[0].message.content or ""
+    usage = response.usage
+    return JudgeResponse(
+        trace_id=trace_id,
+        raw_text=raw,
+        model_id=model,
+        tokens_in=usage.prompt_tokens if usage else 0,
+        tokens_out=usage.completion_tokens if usage else 0,
+        latency_s=latency,
+    )
+
+
 def parse_14_modes(response: str):
     """
     Parse the LLM responses to extract yes/no answers for each failure mode.
@@ -445,9 +479,61 @@ def _stratified_sample(data: list[dict], n: int, key: str, seed: int = 42) -> li
     return result
 
 
+# Traces whose content appears verbatim in data/prompts/examples.txt.
+# When shots > 0 the model sees these as in-context demonstrations, so they
+# must be excluded from the evaluation set to avoid inflated few-shot scores.
+#
+# Full dataset:  trace is a dict with a "key" field; (key, trace_id) is unique.
+# Human-labelled dataset: trace is a plain string; trace_id alone is unique.
+_FEW_SHOT_EXCLUDED_FULL: frozenset[tuple[str, int]] = frozenset({
+    # chalk math problem (No or Incorrect Verification example)
+    ("AG2_GSM_Plus_GPT4o", 15),
+    ("AG2_GSM_Plus_Claude", 100),
+    # ribbon / Monica Has problem (Ignored Other Agent's Input example)
+    ("AG2_GSM_Plus_GPT4o", 2),
+    ("AG2_GSM_Plus_Claude", 2),
+    ("AG2_GSM_Plus_Claude", 151),
+    # astropy / scikit-learn HyperAgent examples
+    ("HyperAgent_SWE-Bench-Lite_Claude", 4),   # astropy__astropy-12907
+    ("HyperAgent_SWE-Bench-Lite_Claude", 13),  # astropy__astropy-14365
+    ("HyperAgent_SWE-Bench-Lite_Claude", 9),   # scikit-learn__scikit-learn-25570
+    # budget tracker and palindrome detector examples
+    ("ChatDev_ProgramDev_GPT4o", 4),
+    ("MetaGPT_ProgramDev_GPT4o", 4),
+    ("MetaGPT_ProgramDev_GPT4o", 3),
+})
+
+_FEW_SHOT_EXCLUDED_HUMAN: frozenset[int] = frozenset({1, 2, 3, 4, 6, 8, 9, 10, 12})
+
+
 def load_dataset(config: JudgeConfig) -> list[dict]:
-    with open(config.dataset_path) as f:
+    with open(config.dataset_path, encoding="utf-8") as f:
         data = json.load(f)
+    # Filter Round 3 before slicing so slice_n stays inside Round 3.
+    if data and "round" in data[0]:
+        data = [t for t in data if t.get("round") == "Round 3"]
+    # Exclude traces that appear verbatim in the few-shot examples file so that
+    # few-shot scores are not inflated by the model having already seen the answer.
+    if config.shots > 0:
+        before = len(data)
+        filtered = []
+        for t in data:
+            trace = t.get("trace")
+            if isinstance(trace, dict):
+                if (trace.get("key"), t.get("trace_id")) not in _FEW_SHOT_EXCLUDED_FULL:
+                    filtered.append(t)
+            else:
+                if t.get("trace_id") not in _FEW_SHOT_EXCLUDED_HUMAN:
+                    filtered.append(t)
+        data = filtered
+        excluded = before - len(data)
+        if excluded:
+            import warnings
+            warnings.warn(
+                f"load_dataset: excluded {excluded} traces that appear in examples.txt "
+                f"(shots={config.shots}). Remaining: {len(data)}.",
+                stacklevel=2,
+            )
     if config.slice_n is not None and config.slice_n < len(data):
         data = _stratified_sample(data, config.slice_n, key="mas_name", seed=42)
     return data
@@ -476,4 +562,7 @@ class LLMJudge:
         if self.config.backend == "genai":
             return _call_genai(self.config.model, prompt, self.config.temperature, trace_id,
                     self.config.genai_project, self.config.genai_location, self.config.system_prompt, self.config.reasoning)
-        raise ValueError(f"Unknown backend: {self.config.backend!r}. Use 'genai', 'anthropic', or 'ollama'.")
+        if self.config.backend == "uva":
+            return _call_uva(self.config.model, prompt, self.config.temperature, trace_id,
+                    self.config.uva_base_url, self.config.system_prompt)
+        raise ValueError(f"Unknown backend: {self.config.backend!r}. Use 'genai', 'anthropic', 'ollama', or 'uva'.")
