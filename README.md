@@ -31,7 +31,7 @@ print('done')
 gcloud auth application-default login
 
 # 6. Configure an experiment
-cp -r experiments/stage1_llm_judge/experiments_template \
+cp -r experiments/stage1_llm_judge/run_100_baseline \
       experiments/stage1_llm_judge/my_experiment
 
 # Edit config.yaml
@@ -94,9 +94,8 @@ Three notebooks cover dataset exploration. Read them in this order:
 |---|---|
 | `data_understanding/general_eda/eda.ipynb` | Traces per framework, FM prevalence and co-occurrence, token and step-length distributions |
 | `data_understanding/fm_1_3_analysis/fm13_detection_analysis.ipynb` | FM-1.3 (Step Repetition) deep-dive: does token length predict this failure mode? |
-| `data_understanding.ipynb` | Unifies all 7 parser outputs into a shared schema; lets you inspect and export traces for any failure mode to a readable markdown file |
 
-The first two notebooks read directly from `data/MAST-Data/MAD_full_dataset.json`. The third requires the parser output JSON files (see below).
+Both notebooks read directly from `data/MAST-Data/MAD_full_dataset.json`.
 
 ## Running the parsers
 
@@ -112,11 +111,11 @@ python parsers/metagpt_parser/metagpt_parser.py
 python parsers/openmanus_parser/openmanus_parser.py
 ```
 
-Output is written as JSON next to each parser (e.g. `parsers/ag2_parser/ag2_output_mad.json`). These files are required by `data_understanding.ipynb`.
+Output is written as JSON next to each parser (e.g. `parsers/ag2_parser/ag2_output_mad.json`).
 
 ## Running the LLM-as-a-Judge
 
-1. Copy `experiments/stage1_llm_judge/experiments_template/` to a new folder, e.g. `experiment_2/`
+1. Copy `experiments/stage1_llm_judge/run_100_baseline/` to a new folder, e.g. `experiment_2/`
 2. Edit `config.yaml`  define one or more experiments under the `experiments:` key. Each entry sets `model`, `backend`, `shots`, `slice_n`, etc.
 3. Open `llm_judge_pipeline.ipynb` **inside your experiment folder** (e.g. `experiments/stage1_llm_judge/my_experiment/`) and run top to bottom. Do not use the notebook at the repo root.
 
