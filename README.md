@@ -5,7 +5,7 @@ multi-agent system (MAS) failure detection. It includes three parts: the
 [MAST](https://github.com/multi-agent-systems-failure-taxonomy/MAST)-based
 **LLM-as-a-Judge pipeline** for detecting failure modes in MAS traces (adapted from the
 original MAST repository and evaluated against the MAD dataset published there); the
-**AG2 multi-agent system setup** quick multi agent system setup; and the **initial data analysis
+**AG2 multi-agent system setup**; and the **initial data analysis
 of the MAST traces** (`data_understanding/`), exploring the dataset's failure-mode
 distributions and characteristics.
 
