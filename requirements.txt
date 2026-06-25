@@ -114,3 +114,4 @@ scikit-learn==1.9.0
 ollama==0.6.2
 openai==2.41.0
 python-dotenv==1.2.2
+sentence-transformers
